@@ -1,0 +1,180 @@
+[
+  {
+    "name": "Barclay Butera Carmel Cambria Upholstered Bed",
+    "price": 1289.00,
+    "image": "https://i.ibb.co/Dt1VLPm/bed31.jpg",
+    "code": "Y1231567",
+    "tags":["latest","featured","trending","sale","special-offer","textile","wood"],
+    "sale":0.4,
+    "quantity":20,
+    "stock":"in-stock",
+    "type":"bed"
+  },
+  {
+    "name": "Barclay Butera Carmel Post Ranch Panel Bed",
+    "price": 3249.00,
+    "image": "https://i.ibb.co/p4Jrt6R/bed30.jpg",
+    "code": "Y1231507",
+    "tags":["latest","featured","trending","sale","special-offer","textile"],
+    "sale":0.5,
+    "quantity":30,
+    "stock":"in-stock",
+    "type":"bed"
+  },
+  {
+    "name": "Barclay Butera Laguna Avalon Upholstered Bed",
+    "price": 3799.00,
+    "image": "https://i.ibb.co/N36tfS2/935-144-C-Silo-512x512.jpg",
+    "code": "Y1231407",
+    "tags":["latest","trending","textile","wood"],
+    "sale":0,
+    "quantity":10,
+    "stock":"in-stock",
+    "type":"bed"
+  },
+  {
+    "name": "Barclay Butera Malibu Zuma Upholstered Panel Bed",
+    "price": 2009.00,
+    "image": "https://i.ibb.co/0cZJzqZ/bed22.jpg",
+    "code": "Y1231507",
+    "tags":["latest","featured","trending","wood"],
+    "sale":0,
+    "quantity":10,
+    "stock":"in-stock",
+    "type":"bed"
+  },
+  {
+    "name": "Barclay Butera Newport Crystal Cove Upholstered Panel Bed",
+    "price": 1829.00,
+    "image": "https://i.ibb.co/7QzP6Lz/bed19.jpg",
+    "code": "Y1231207",
+    "tags":["sale","special-offer","textile","wood"],
+    "sale":20,
+    "quantity":15,
+    "stock":"in-stock",
+    "type":"bed"
+  },
+  {
+    "name": "Barclay Butera Park City Talisker Upholstered Bed",
+    "price": 2299.00,
+    "image": "https://i.ibb.co/F3jt3V4/bed52.jpg",
+    "code": "Y1231507",
+    "tags":["latest","featured","trending","sale","special-offer","textile"],
+    "sale":0.3,
+    "quantity":15,
+    "stock":"in-stock",
+    "type":"bed"
+  },
+  {
+    "name": "Bernhardt Aventura Panel Bed",
+    "price": 2887.00,
+    "image": "https://i.ibb.co/3FRmPPX/bed53.jpg",
+    "code": "Y1231517",
+    "tags":["latest","featured","trending","textile","wood"],
+    "sale":0,
+    "quantity":10,
+    "stock":"in-stock",
+    "type":"bed"
+  },
+  {
+    "name": "Barclay Butera Malibu Zuma Upholstered Panel Bed",
+    "price": 2009.00,
+    "image": "https://i.ibb.co/0cZJzqZ/bed22.jpg",
+    "code": "Y1236517",
+    "tags":["latest","featured","trending","textile"],
+    "sale":0,
+    "quantity":10,
+    "stock":"in-stock",
+    "type":"bed"
+  },
+  {
+    "name": "Caracole Bend The Rules Sofa",
+    "price": 4695.00,
+    "image": "https://i.ibb.co/j3yzJf6/sofa7.jpg",
+    "code": "Y1336517",
+    "tags":["special-offer","sale","wood","textile"],
+    "sale":0.3,
+    "quantity":16,
+    "stock":"in-stock",
+    "type":"sofas-and-loveseats"
+  },
+  {
+    "name": "Caracole Signature Metropolitan Main Event Sofa",
+    "price": 5675.00,
+    "image": "https://i.ibb.co/PWRWJfw/sofa18.jpg",
+    "code": "Y1336557",
+    "tags":["special-offer","sale","wood","textile"],
+    "sale":0.3,
+    "quantity":12,
+    "stock":"in-stock",
+    "type":"sofas-and-loveseats"
+  },
+  {
+    "name": "Caracole Upholstery Simply Stunning Loveseat",
+    "price": 3625.00,
+    "image": "https://i.ibb.co/rGCdZd3/sofa23.jpg",
+    "code": "Y1336597",
+    "tags":["latest","featured","wood"],
+    "sale":0,
+    "quantity":16,
+    "stock":"in-stock",
+    "type":"sofas-and-loveseats"
+  },
+  {
+    "name": "Bernhardt Axiom Square Cocktail Table",
+    "price": 1360.00,
+    "image": "https://i.ibb.co/VQRP6wy/ct13.jpg",
+    "code": "Y1396597",
+    "tags":["latest","featured","trending","glass","wood"],
+    "sale":0,
+    "quantity":20,
+    "stock":"in-stock",
+    "type":"coffe-tables"
+  },
+  {
+    "name": "Caracole Flower Power Cocktail Table",
+    "price": 2345.00,
+    "image": "https://i.ibb.co/cvDYx7L/ct19.jpg",
+    "code": "Y1396597",
+    "tags":["latest","featured","trending","glass","wood"],
+    "sale":0,
+    "quantity":29,
+    "stock":"in-stock",
+    "type":"coffe-tables"
+  },
+  {
+    "name": "Maitland Smith Sale Jinx Oval Cocktail Table",
+    "price": 1798.00,
+    "image": "https://i.ibb.co/3NCnX41/ct20.jpg",
+    "code": "Y1396597",
+    "tags":["special-offer","sale","glass","wood"],
+    "sale":0.5,
+    "quantity":13,
+    "stock":"in-stock",
+    "type":"coffe-tables"
+  },
+  {
+    "name": "Maitland Smith Sale Classic Cocktail Table\n",
+    "price": 1759.00,
+    "image": "https://i.ibb.co/wphtMZc/hm1016c-2-jinx-0416-hr-hires-512x.jpg",
+    "code": "Y1396597",
+    "tags":["special-offer","sale","glass","wood"],
+    "sale":0.5,
+    "quantity":13,
+    "stock":"in-stock",
+    "type":"coffe-tables"
+  },
+  {
+    "name": "Sunpan Bernaby Coffee Table",
+    "price": 2399.00,
+    "image": "https://i.ibb.co/3Wz6jTb/M131-421-401-512x.jpg",
+    "code": "Y1396597",
+    "tags":["special-offer","sale","glass","wood"],
+    "sale":0.3,
+    "quantity":10,
+    "stock":"in-stock",
+    "type":"coffe-tables"
+  }
+
+
+]
