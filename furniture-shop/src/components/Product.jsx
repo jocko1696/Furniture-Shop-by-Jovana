@@ -10,8 +10,8 @@ const Product = (props) => {
 
 
     return (
-        <div className={`product flex py-[30px] justify-center`}>
-            <div className={`product flex py-[30px] ${isProductPage ? "flex-row" : ""} shadow-box  `}>
+        <div className={`product flex py-[30px]  justify-center`}>
+            <div className={`product card-box flex py-[30px] px-[30px] ${isProductPage ? "flex-row" : ""} shadow-box  `}>
                 <div className="image-container" >
                     <img src={props.image[0]} className="product-image responsive-image " alt="missing picture"/>
                 </div>
@@ -33,9 +33,9 @@ const Product = (props) => {
                         <span className="product-sale">${props.sale}</span>
                     </div>
                     <div>
-                        <p className="product-description">{props.description}</p>
+                        <p className="product-description max-w-[700px]">{props.description}</p>
                     </div>
-                    <div className="py-[50px]">
+                    <div className="py-[20px]">
                         <div className="flex flex-row py-2 svg-images">
                             <a className="px-3 "><AiOutlineShoppingCart className="svg-image"/></a>
                             <a className="px-3"><AiOutlineHeart className="svg-image"/></a>

@@ -171,10 +171,11 @@ console.log(updatedCheckedState);
                 <div className="overlay"></div>
 
             </div>
-            <div className="flex bg-white">
-                <div className="w-[30%]">
+            <div className="flex bg-white pageDivider ">
+                <button className="filter-button">Filters</button>
+                <div className="w-[30%] my-[70px] ml-[30px] left-container">
                     {/*<Filter/>*/}
-                    <div className="flex items-center">
+                    <div className="flex items-center pt-[27px] pb-[20px]">
                         <div className="flex space-x-1 w-[100%]">
                             <input
                                 type="text"
@@ -203,47 +204,19 @@ console.log(updatedCheckedState);
                             </button>
                         </div>
                     </div>
-                    {/*<div className="sidebar-filter-menu">*/}
-                    {/*    <div className="bedroom-block">*/}
-                    {/*        <ul>*/}
-                    {/*            {categoryNames.map((item, index) => (*/}
-                    {/*                <li>*/}
-                    {/*                    <button onClick={() => item.submenu ? toggleSubmenu(index) : null}>*/}
-                    {/*                        {item.name}*/}
-                    {/*                    </button>*/}
-                    {/*                    <ul>*/}
-                    {/*                        {categories.slice(0, splitIndexFirst).map((category, index) => (*/}
-                    {/*                            <li key={index}>*/}
-                    {/*                                <input*/}
-                    {/*                                    type="checkbox"*/}
-                    {/*                                    id={`custom-checkbox-${index}`}*/}
-                    {/*                                    name={category}*/}
-                    {/*                                    value={category}*/}
-                    {/*                                    checked={checkedState[index]}*/}
-                    {/*                                    onChange={() => handleOnChange(index)}*/}
-                    {/*                                />*/}
-                    {/*                                <label htmlFor={`custom-checkbox-${index}`}>{category}</label>*/}
-                    {/*                            </li>*/}
-                    {/*                        ))}*/}
-                    {/*                    </ul>*/}
-                    {/*                </li>*/}
-                    {/*            ))}*/}
 
-
-                    {/*        </ul>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    <div className="sidebar">
-                        <ul>
+                    <div className="sidebar product-page-sidebar">
+                        <p className="product-type pt-[15px] font-semibold inline">PRODUCT TYPE</p>
+                        <ul className="mt-[20px]">
                             {categories.map((item, index) => (
                                 <li key={index}>
-                                    <button onClick={() => item.submenu ? toggleSubmenu(index) : null}>
+                                    <button className="cursor-pointer typeButtons font-medium" onClick={() => item.submenu ? toggleSubmenu(index) : null}>
                                         {item.name}
                                     </button>
                                     {item.submenu && openSubmenu[index] && (
                                         <ul className="submenu">
                                             {item.submenu.map((sub, subIndex) => (
-                                                <li key={subIndex}>
+                                                <li className="types" key={subIndex}>
                                                     <input
                                                         type="checkbox"
                                                         id={`custom-checkbox-${sub.index}`}
@@ -252,7 +225,7 @@ console.log(updatedCheckedState);
                                                         checked={checkedState[sub.index]}
                                                         onChange={() => handleOnChange(sub.index)}
                                                     />
-                                                    <label htmlFor={`custom-checkbox-${sub.index}`}>{sub.name}</label>
+                                                    <label  className="ml-[7px]" htmlFor={`custom-checkbox-${sub.index}`}>{sub.name}</label>
                                                 </li>
                                             ))}
                                         </ul>
@@ -262,7 +235,7 @@ console.log(updatedCheckedState);
                         </ul>
                     </div>
                 </div>
-                <div className="flex w-[70%] my-[70px] flex-col">
+                <div className="flex w-[70%] my-[70px] mx-[30px] flex-col right-container">
                     <div className="d-flex flex-column ">
                         {furnitureProducts}
                     </div>

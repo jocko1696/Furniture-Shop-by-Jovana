@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SearchComponent() {
     return (
-        <div className="flex items-center">
+        <div className="flex items-center searchContainer">
             <div className="flex space-x-1">
                 <input
                     type="text"
