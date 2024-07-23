@@ -6,6 +6,14 @@ import ReactPaginate from 'react-paginate';
 
 const Products = () => {
 
+    //Part for button filter activity
+    const [isActive, setIsActive] = useState(false);
+
+    const handleToggle = () => {
+        setIsActive(!isActive);
+    };
+
+
     // const [categoryNames, setCategoryNames] = useState(['Bedroom', 'Living']);
     // const [categories, setCategories] = useState(['Beds', 'Nightstands & Tables', 'Dressers & Armoires', 'Sofas & Loveseats', 'Coffe tables']);
     const [categoriesIndexes, setCategoriesIndexes] = useState(
@@ -172,8 +180,15 @@ console.log(updatedCheckedState);
 
             </div>
             <div className="flex bg-white pageDivider ">
-                <button className="filter-button">Filters</button>
-                <div className="w-[30%] my-[70px] ml-[30px] left-container">
+                <button
+                    className={`filter-button ${isActive ? 'active' : ''}`}
+                    onClick={handleToggle}
+
+                >Filters</button>
+                <div
+
+                    className={`w-[30%] my-[70px] ml-[30px] left-container toggled-element ${isActive ? 'visible' : ''}`}
+                >
                     {/*<Filter/>*/}
                     <div className="flex items-center pt-[27px] pb-[20px]">
                         <div className="flex space-x-1 w-[100%]">

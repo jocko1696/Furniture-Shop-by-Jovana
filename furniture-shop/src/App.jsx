@@ -21,8 +21,7 @@ import {AuthProvider} from "./context/useAuthContext";
 function App() {
 
     return (
-<AuthProvider>
-
+        <AuthProvider>
             <Router>
                 <Header/>
                 <Navbar/>
@@ -42,9 +41,7 @@ function App() {
                 <HeroFooter/>
                 <FooterComponent/>
             </Router>
-
-</AuthProvider>
-
+        </AuthProvider>
 
 
     )

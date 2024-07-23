@@ -2,7 +2,7 @@ import React from 'react';
 
 const HeroFooter = () => {
     return (
-        <section className="heroFooterSection flex justify-between lg:flex-col  pb-[40px] md:pb-[100px]">
+        <section className="heroFooterSection flex justify-between lg:flex-col  pb-[40px] lg:pb-[100px]">
 
             <div className="hf-left flex justify-center items-center lg:w-full">
                 {/*<img src={`../../public/images/Sofa-lineart.svg`} />*/}
@@ -18,12 +18,8 @@ const HeroFooter = () => {
                         <li>Reinforced with double wood dowels,glue,screw</li>
                         <li>Arms,backs and seats are structurally reinforced</li>
                     </ul>
-                    <div className="flex gap-4 md:flex md:justify-center	">
+                    <div className="flex gap-4 lg:flex lg:justify-center	">
                         <a href="" className=" addToCart text-white flex items-center justify-center bg-pink-600 px-[50px] py-[15px]">Read More</a>
-                        {/*<div className="flex flex-col ">*/}
-                        {/*    <span>Furniture</span>*/}
-                        {/*    <span>$32</span>*/}
-                        {/*</div>*/}
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 require('../models/productModel');
 const mongoose = require("mongoose");
-// const {ObjectId} = require("mongodb");
+//const {ObjectId} = require("mongoose");
 const Product = mongoose.model("Product");
 // const mongoosePaginate = require('mongoose-paginate');
 
@@ -27,7 +27,9 @@ const getProducts = asyncHandler(async (req, res) => {
 const getProductById = asyncHandler(async (req, res) => {
 
     try {
-        const productId = req.params.id;
+        let productId = req.params.id;
+        productId = productId.slice(1);
+
         const product = await Product.findById(productId);
 
         if (!product) {
@@ -56,12 +58,12 @@ const getProductsByParameters = asyncHandler(async (req, res) => {
         console.log(categories.split(','));
         if (categories) {
             filter = {"category": {$in: categories.split(',')}};
-            console.log("Filter je: "  + JSON.stringify(filter.categories));
+            console.log("Filter je: " + JSON.stringify(filter.categories));
         }
 
 
         if (search) {
-            query = { $text: { $search: search , $caseSensitive:false} };
+            query = {$text: {$search: search, $caseSensitive: false}};
 
         }
 

@@ -2,6 +2,8 @@ import React from 'react';
 import {useLocation} from 'react-router-dom';
 import {AiOutlineShoppingCart, AiOutlineHeart} from "react-icons/ai";
 import {SlMagnifierAdd} from "react-icons/sl";
+import {NavLink} from 'react-router-dom'
+
 
 const Product = (props) => {
 
@@ -13,7 +15,8 @@ const Product = (props) => {
         <div className={`product flex py-[30px]  justify-center`}>
             <div className={`product card-box flex py-[30px] px-[30px] ${isProductPage ? "flex-row" : ""} shadow-box  `}>
                 <div className="image-container" >
-                    <img src={props.image[0]} className="product-image responsive-image " alt="missing picture"/>
+                    <NavLink to={`/products/:${props.id}`}><img src={props.image[0]} className="product-image responsive-image " alt="missing picture"/></NavLink>
+
                 </div>
                 <div className="px-[40px] flex flex-col justify-center max-w-[970px]">
                     <div className="flex flex-row">

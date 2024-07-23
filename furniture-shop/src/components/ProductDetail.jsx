@@ -10,7 +10,7 @@ const ProductDetail = () => {
         // Simple POST request with a JSON body using fetch
         const requestOptions = {
             method: 'GET',
-            // headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json' },
             // body: JSON.stringify({ title: 'React POST Request Example' })
         };
         // Fetch product details from API using the ID
@@ -26,8 +26,8 @@ const ProductDetail = () => {
 
     return (
         <div>
-            <h1>{product.name}</h1>
-            <p>{product.description}</p>
+            <h1>NAME:{product.name}</h1>
+            <p>Description:{product.description}</p>
             <p>Price: ${product.price}</p>
         </div>
     );
