@@ -767,8 +767,7 @@ nav a.active,
     color: #9295AA;
     font-size: 17px;
     letter-spacing: 1px;
-    padding: 30px 0;
-    /*text-shadow: 1px 1px 1px silver;*/
+    padding: 40px 0;
     font-weight: 500;
 }
 
@@ -776,6 +775,35 @@ nav a.active,
     font-size: 22px;
     color: #535399;
 }
+
+.product .svg-images-container a:hover {
+
+    border-radius: 100%;
+    background: #A297D9;
+    width: 50px;
+    height: 50px;
+
+}
+
+.product .svg-images-container svg{
+    border: 1px solid transparent;
+}
+
+.product .svg-images-container a:hover svg {
+    width: 30px;
+    height: 30px;
+    color: #FF2AAA !important;
+}
+
+.product-details-wrapper .product .add-to-cart:hover{
+    border-radius: unset !important;
+    background:unset !important;
+    width: unset !important;
+    height: unset !important;
+    color: #FF2AAA !important;
+}
+
+
 
 .submenu-products {
     /*background-color: #E5E0FC;*/
@@ -951,11 +979,82 @@ nav a.active,
     border-radius: 30px;
 }
 
-.filter-button.active{
-    color:#A297D9;
+.filter-button.active {
+    color: #A297D9;
     background: #FB2E86;
 }
+.product .add-to-cart{
+    color: #111C85;
+    font-weight: 600;
+    font-family: 'Josefin Sans', sans-serif !important;
 
+}
+
+.product-details-wrapper{
+    padding:70px 20px !important;
+}
+
+.gallery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.main-image img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.thumbnails img {
+    width: 80px;
+    height: auto;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    transition: border 0.3s;
+}
+
+.thumbnails img.active,
+.thumbnails img:hover {
+    border: 2px solid #007bff;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .gallery-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .main-image {
+        flex: 2;
+        margin-right: 20px;
+    }
+
+    .thumbnails {
+        flex: 1;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .thumbnails img {
+        width: 100px;
+    }
+}
 
 /*******************MEDIA QUERY SECTION**********************/
 

@@ -4,6 +4,7 @@ import {RxDotFilled} from "react-icons/rx";
 import {BiDotsHorizontal} from "react-icons/bi";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faSquare} from '@fortawesome/free-solid-svg-icons'
+import {NavLink, useParams} from 'react-router-dom';
 
 
 const slides = [
@@ -86,7 +87,8 @@ const HeroComponent = () => {
                 <p className="text-above">{slides[currentIndex].textAbove}</p>
                 <h1 className="text-slogan">{slides[currentIndex].slogan}</h1>
                 <p className="text-under">{slides[currentIndex].textUnder}</p>
-                <a className=" shopNow flex items-center text-white text-xl  max-w-[163px] pl-[40px] pr-[40px] pt-[11px] pb-[11px] ">Shop Now</a>
+                <NavLink to="/products"><a className=" shopNow flex items-center text-white text-xl  max-w-[163px] pl-[40px] pr-[40px] pt-[11px] pb-[11px] ">Shop Now</a></NavLink>
+
             </div>
             <div
                 className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl ">
