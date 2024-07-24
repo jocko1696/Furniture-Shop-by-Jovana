@@ -1,5 +1,7 @@
 import React from 'react';
 import BreadCrumb from "../components/BreadCrumb.jsx";
+import Blog from "../components/Blog";
+import CardSection from "../components/CardSection.jsx";
 
 const Contact = () => {
     return (
@@ -13,6 +15,8 @@ const Contact = () => {
                 </div>
                 <div className="overlay"></div>
             </div>
+            <Blog />
+            <CardSection />
         </section>
     );
 };

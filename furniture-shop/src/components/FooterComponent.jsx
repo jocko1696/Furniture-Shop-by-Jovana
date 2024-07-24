@@ -8,7 +8,7 @@ import {AiFillTwitterCircle} from "react-icons/ai";
 
 const FooterComponent = () => {
     return (
-        <section className="footer flex flex-col pt-[60px]">
+        <section className="footer flex flex-col pt-[60px]" id="footer">
             <div className="footerCols centerContainer grid grid-cols-3 gap-[335px] md:flex md:flex-col md:gap-0">
                 <div className="flex flex-col md:flex md:justify-center	">
                     <h1 className="fs-title mb-[20px] mt-[20px] md:text-center" id="fs-logoName">Hekto</h1>
