@@ -35,7 +35,7 @@ const Product = (props) => {
                         <span className="product-sale">${props.sale}</span>
                     </div>
                     <div>
-                        <p className="product-description max-w-[700px]">{props.description}</p>
+                        <p className="product-description max-w-[700px] text-justify">{props.description}</p>
                     </div>
                     <div className="py-[20px] svg-images-container">
                         <div className="flex flex-row py-2 svg-images">
