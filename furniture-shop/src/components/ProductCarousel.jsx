@@ -41,7 +41,7 @@ const ProductCarousel = () => {
 
                 latest = !!item.tags.includes("latest");
                 trending = !!item.tags.includes("trending");
-                featured= !!item.tags.includes("featured");
+                featured = !!item.tags.includes("featured");
                 specialOffer = !!item.tags.includes("special-offer");
                 newArrival = !!item.tags.includes("new-arrival");
                 bestSeller = !!item.tags.includes("best-seller");
@@ -58,9 +58,9 @@ const ProductCarousel = () => {
                     featured={featured}
                     latest={latest}
                     trending={trending}
-                    specialOffer ={specialOffer}
-                    newArrival = {newArrival}
-                    bestSeller = {bestSeller}
+                    specialOffer={specialOffer}
+                    newArrival={newArrival}
+                    bestSeller={bestSeller}
 
                 />
             }

@@ -9,6 +9,7 @@ const errorHandler = require("./middleware/errorMiddleware");
 const {protect} = require("./middleware/authMiddleware");
 const {registerUser, loginUser, getUser, logout} = require("./controllers/userController");
 const { createProduct, getProducts, getProductById,getProductsByParameters } = require("./controllers/productController");
+const { getReviews } = require("./controllers/reviewController");
 
 
 const app = express();
@@ -86,6 +87,10 @@ app.get('/products/:id',getProductById)
 
 //Get products By parameters
 app.get('/productsByParams',getProductsByParameters)
+
+//Get Google Reviews
+
+app.get('/getReviews',getReviews)
 
 
 
