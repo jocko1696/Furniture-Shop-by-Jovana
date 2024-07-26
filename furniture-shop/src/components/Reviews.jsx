@@ -35,7 +35,7 @@ const Reviews = () => {
         />
     })
 
-    console.log(allReviews);
+
 
     return (
         <div className="flex items-center flex-col ">

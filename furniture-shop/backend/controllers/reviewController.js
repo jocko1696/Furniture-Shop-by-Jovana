@@ -10,7 +10,7 @@ const getReviews= asyncHandler(async (req, res) => {
 
     try {
         const reviews = await Review.find({});
-        console.log(reviews);
+        // console.log(reviews);
         res.status(200).send(reviews);
     } catch (error) {
         res.status(500).send();

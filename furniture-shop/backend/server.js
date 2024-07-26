@@ -10,6 +10,7 @@ const {protect} = require("./middleware/authMiddleware");
 const {registerUser, loginUser, getUser, logout} = require("./controllers/userController");
 const { createProduct, getProducts, getProductById,getProductsByParameters } = require("./controllers/productController");
 const { getReviews } = require("./controllers/reviewController");
+const {getAllContacts,writeContact} = require("./controllers/contactController");
 
 
 const app = express();
@@ -89,8 +90,11 @@ app.get('/products/:id',getProductById)
 app.get('/productsByParams',getProductsByParameters)
 
 //Get Google Reviews
-
 app.get('/getReviews',getReviews)
+
+//Write contact in database
+app.post('/writeContact', writeContact);
+
 
 
 
