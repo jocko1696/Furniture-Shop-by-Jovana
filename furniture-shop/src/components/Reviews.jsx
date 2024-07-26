@@ -10,7 +10,7 @@ const Reviews = () => {
     const [reviews, setReviews] = useState([]);
 
     /******************GET REVIEWS FROM DATABASE***********************/
-
+    let allReviews;
     useEffect(() => {
         fetch('http://localhost:5000/getReviews',)
             .then((response) => response.json())
@@ -24,7 +24,7 @@ const Reviews = () => {
             });
     }, []);
 
-    let allReviews = reviews.map((review, index) => {
+    allReviews = reviews.map((review, index) => {
         return <Review
             key={index}
             name={review.name}
@@ -35,28 +35,32 @@ const Reviews = () => {
         />
     })
 
+    console.log(allReviews);
+
     return (
-        <div className="flex items-center">
-            <h2>Our Client Say!</h2>
+        <div className="flex items-center flex-col ">
+            <h2 className="sectionHeadingText">Our Client Say!</h2>
 
             <Carousel showDots={true}
                       responsive={responsiveReviews}
                       infinite={true}
-                    // autoPlay={true}
+                      autoPlay={true}
                       autoPlaySpeed={3000}
-                      customTransition="all .5"
-                      transitionDuration={500}
-                      containerClass="carousel-container"
+                      containerClass="carousel-container w-full overflow-hidden justify-center	"
                       removeArrowOnDeviceType={["superLargeDesktop", "desktop", "tablet", "mobile"]}
                       dotListClass="custom-dot-list-style"
-                      itemClass="carousel-item-padding-40-px"
+                      itemClass="carousel-item w-full"
                       swipeable={true}
-                      draggable={false}
+                      draggable={true}
                       renderDotsOutside={false}
                       customDot={<CustomDot/>}
+                      centerMode={true}
+                      customTransition="transform 300ms ease-in-out"
+
             >
                 {allReviews}
             </Carousel>
+
         </div>
     );
 };

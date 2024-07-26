@@ -754,6 +754,7 @@ nav a.active,
 }
 
 .product h1
+
 {
     color: #111C85;
     font-weight: bolder;
@@ -761,7 +762,7 @@ nav a.active,
     letter-spacing: 2px;
 }
 
-.blogContainer h1{
+.blogContainer h1 {
     font-family: 'Josefin Sans', sans-serif !important;
     color: #111C85;
     font-weight: 900 !important;
@@ -1060,7 +1061,66 @@ nav a.active,
 .blogContainer{
     margin: 70px auto !important;
 }
+.contact-section{
+    background-color:rgb(235, 214, 235, 0.6)!important;
+    /*background-color: #EBD6EB!important;*/
+}
 
+.contact-page .carousel-container{
+    max-width: 600px !important;
+    margin:unset !important;
+
+}
+/*.contact-page .carousel-container div{*/
+/*    max-width: 300px !important;*/
+/*    */
+/*}*/
+
+.contact-page .react-multi-carousel-item > div {
+    max-width: 100% !important;
+}
+
+.contact-page .react-multi-carousel-item {
+    display: flex;
+    justify-content: center;
+}
+
+/*.contact-page .react-multi-carousel-item img{*/
+/*    padding-bottom: 20px;*/
+/*}*/
+
+
+.contact-page .react-multi-carousel-track li{
+    width:300px !important;
+    margin: 0 10px !important;
+    box-shadow: unset!important;
+
+
+}
+
+.contact-page .react-multi-carousel-item img{
+    border:1px solid transparent;
+    border-radius: 30px;
+}
+
+.review-name{
+    font-family: 'Josefin Sans', sans-serif !important;
+    color: #111C85;
+    font-weight: bolder;
+    font-size: 17px;
+
+}
+
+.review-desc{
+    color: #9295AA;
+    font-size: 15px;
+    font-family: 'Josefin Sans', sans-serif !important;
+    font-weight: 500;
+}
+
+.contact-page .customDot {
+    width:15px!important;
+}
 /*******************MEDIA QUERY SECTION**********************/
 
 @media (max-width: 1145px){

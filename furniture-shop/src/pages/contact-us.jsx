@@ -47,7 +47,7 @@ const Contact = () => {
     // )
 
     return (
-        <section className="heroSectionContact pageSection">
+        <section className="heroSectionContact pageSection contact-page">
             <div className="overlay-wrapper">
                 <div className="centerContainer">
                     <div className="flex flex-col relative z-20 breadcrumb-wrapper">
@@ -59,9 +59,12 @@ const Contact = () => {
             </div>
             <Blog/>
             <CardSection/>
-            <div className="centerContainer">
-                <Reviews />
+            <div className="contact-section px-[70px] py-[20px]">
+                <div className="centerContainer ">
+                    <Reviews/>
+                </div>
             </div>
+
         </section>
     );
 };

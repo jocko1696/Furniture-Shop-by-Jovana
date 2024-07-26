@@ -4,7 +4,7 @@ import Carousel from 'react-multi-carousel';
 import CustomDot from "./CustomDot.jsx";
 import 'react-multi-carousel/lib/styles.css';
 import {responsive} from "../data/responsive";
-import axios from 'axios';
+
 
 const ProductCarousel = () => {
 
