@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import BreadCrumb from "../components/BreadCrumb.jsx";
 import axios from "axios";
 import ProductDetail from "../components/ProductDetail.jsx";
+import CartSection from "../components/Cart";
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -23,21 +24,16 @@ const Cart = () => {
             <div className="overlay-wrapper">
                 <div className="centerContainer">
                     <div className="flex flex-col relative z-20 breadcrumb-wrapper">
-                        <h1 className="pageHeaderTitle">Products</h1>
+                        <h1 className="pageHeaderTitle">Cart</h1>
                         <BreadCrumb/>
                     </div>
                 </div>
                 <div className="overlay"></div>
             </div>
             <div>
-                <h1>Your Cart</h1>
-                {cartItems.map(item => (
-                    <div key={item._id}>
-                        <p>{item.name} - ${item.price} x {item.quantity}</p>
-                        <button onClick={() => removeItem(item._id)}>Remove</button>
-                    </div>
-                ))}
+
             </div>
+            <CartSection />
         </section>
     );
 };

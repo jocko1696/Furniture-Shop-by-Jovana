@@ -1121,6 +1121,82 @@ nav a.active,
 .contact-page .customDot {
     width:15px!important;
 }
+
+.cart-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.cart-table,
+.cart-summary {
+    flex: 1;
+    min-width: 280px;
+}
+
+.cart-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.cart-table th {
+    background-color: #f7f7f7;
+}
+
+.cart-product-image {
+    width: 50px;
+    height: auto;
+}
+
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.proceed-button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+}
+
+.cart-image-row{
+    position: relative;
+}
+
+.delete-from-cart{
+    position: absolute;
+    top: 2px;
+    left: 52px;
+    font-size: 22px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .cart-container {
+        flex-direction: column;
+    }
+}
 /*******************MEDIA QUERY SECTION**********************/
 
 @media (max-width: 1145px){
