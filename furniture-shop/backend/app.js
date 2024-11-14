@@ -60,7 +60,7 @@ mongoose.connection.collection('products').count(function (err, count) {
     console.dir(err);
     console.dir(count);
 
-    if (count == 0) {
+    if (count === 0) {
         console.log("No Found Records.");
         importData();
     } else {
@@ -154,6 +154,43 @@ app.post("/getProducts", async (req, res) => {
         console.log(exception)
     }
 
+});
+
+
+
+
+
+//////////Section for Google reviews///////////////
+
+//Create review Schema in Mongo DB
+require("./models/reviewModel");
+const Review = mongoose.model("Review");
+const review_data = JSON.parse(fs.readFileSync('./products.json', 'utf-8'));
+
+
+//Function for importing data into reviews collection
+const importReviewData = async () => {
+    try {
+        await Review.create(review_data)
+        console.log('review data successfully imported')
+        // to exit the process
+        process.exit()
+    } catch (error) {
+        console.log('error while importing review data', error)
+    }
+}
+
+//Insert review data into products collection if the collection is empty
+mongoose.connection.collection('reviews').count(function (err, count) {
+    console.dir(err);
+    console.dir(count);
+
+    if (count === 0) {
+        console.log("No Found Review Records.");
+        importReviewData();
+    } else {
+        console.log("Found Review Records : " + count);
+    }
 });
 
 

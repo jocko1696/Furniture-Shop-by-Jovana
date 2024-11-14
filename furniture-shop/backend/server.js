@@ -11,6 +11,7 @@ const {registerUser, loginUser, getUser, logout} = require("./controllers/userCo
 const { createProduct, getProducts, getProductById,getProductsByParameters } = require("./controllers/productController");
 const { getReviews } = require("./controllers/reviewController");
 const {getAllContacts,writeContact} = require("./controllers/contactController");
+const{  addProductToCart, getAllProductsFromCart, deleteCart, deleteProductFromCart}=require("./controllers/cartController");
 
 
 const app = express();
@@ -94,6 +95,16 @@ app.get('/getReviews',getReviews)
 
 //Write contact in database
 app.post('/writeContact', writeContact);
+
+/////CART //////////
+
+//Add product to cart
+app.post('/addProductToCart', addProductToCart);
+
+//Get products from cart
+app.get('/getAllProductsFromCart',getAllProductsFromCart);
+
+app.delete('/deleteProductFromCart/:id',deleteProductFromCart);
 
 
 

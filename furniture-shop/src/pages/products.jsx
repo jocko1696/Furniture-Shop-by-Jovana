@@ -167,6 +167,7 @@ console.log(updatedCheckedState);
         fetchProducts(checkedState, pagination.currentPage, searchTerm);
     };
 
+
     return (
         <section className="heroSectionProducts pageSection ">
             <div className="overlay-wrapper">

@@ -3,12 +3,34 @@ import {useLocation} from 'react-router-dom';
 import {AiOutlineShoppingCart, AiOutlineHeart} from "react-icons/ai";
 import {SlMagnifierAdd} from "react-icons/sl";
 import {NavLink} from 'react-router-dom'
+import axios from "axios";
 
 
 const Product = (props) => {
 
     const location = useLocation();
     const isProductPage = location.pathname === '/products';
+
+    /**************ADD PRODUCTS TO CART ****************************/
+
+
+    const addToCart = async (product) => {
+        try {
+            const response = await axios.post('http://localhost:5000/addProductToCart', {
+                productId: product.id,
+                name: product.name,
+                price: product.price,
+                image:product.image[0],
+            });
+
+            if (response.status === 201 || response.status === 200) {
+                console.log('Product added to cart successfully:', response.data);
+                // Optional: Update local cart state, show success message, etc.
+            }
+        } catch (error) {
+            console.error('Error adding product to cart:', error);
+        }
+    };
 
 
     return (
@@ -39,7 +61,7 @@ const Product = (props) => {
                     </div>
                     <div className="py-[20px] svg-images-container">
                         <div className="flex flex-row py-2 svg-images">
-                            <NavLink to="/cart" className="px-3 flex justify-center items-center"><AiOutlineShoppingCart className="svg-image"/></NavLink>
+                            <button><NavLink  className="px-3 flex justify-center items-center" onClick={() => addToCart(props)}><AiOutlineShoppingCart className="svg-image"/></NavLink></button>
                             <NavLink to="/wishlist" className="px-3 flex justify-center items-center"><AiOutlineHeart className="svg-image"/></NavLink>
                             <a className="px-3 flex justify-center items-center"><SlMagnifierAdd className="svg-image"/></a>
                         </div>
