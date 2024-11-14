@@ -79,13 +79,59 @@ const deleteCart = asyncHandler(async (req, res) => {
     }
 });
 
+// const deleteProductFromCart = asyncHandler(async (req, res) => {
+//     const { id } = req.params;
+//     try {
+//         await CartItem.findByIdAndDelete(id);
+//         // Emit event to notify clients about the cart update
+//         io.emit('cartUpdated'); // Notify all connected clients about cart change
+//         res.json({ message: 'Item removed from cart' });
+//
+//     } catch (error) {
+//         res.status(500).json({ message: 'Failed to remove item' });
+//     }
+//
+// });
 const deleteProductFromCart = asyncHandler(async (req, res) => {
     const { id } = req.params;
+
     try {
-        await CartItem.findByIdAndDelete(id);
+        const deletedItem = await CartItem.findByIdAndDelete(id);
+
+        if (!deletedItem) {
+            // If no item is found, return 404 to avoid double response
+            console.log('Item not found in cart');
+            return res.status(404).json({ message: 'Item not found in cart' });
+        }
+
+        // Emit event to notify all connected clients about the cart update
+        req.io.emit('cartUpdated');
+
+        console.log('Item removed from cart:', deletedItem);
         res.json({ message: 'Item removed from cart' });
+
     } catch (error) {
+        console.error('Error removing item from cart:', error);
         res.status(500).json({ message: 'Failed to remove item' });
+    }
+});
+
+
+const calculateTotalPrice = asyncHandler(async (req, res) => {
+    try {
+        // Find all items in the cart
+        const cartItems = await CartItem.find();
+
+        // Calculate the total price
+        const totalPrice = cartItems.reduce((total, item) => {
+            return total + (item.price * item.quantity);
+        }, 0);
+
+        // Return the total price
+        res.json({ totalPrice });
+    } catch (error) {
+        console.error('Error calculating total price:', error);
+        res.status(500).json({ message: 'Failed to calculate total price', error: error.message });
     }
 });
 
@@ -93,7 +139,8 @@ module.exports = {
     addProductToCart,
     getAllProductsFromCart,
     deleteCart,
-    deleteProductFromCart
+    deleteProductFromCart,
+    calculateTotalPrice
 
 
 }
