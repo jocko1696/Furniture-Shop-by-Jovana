@@ -5,20 +5,20 @@ import ProductDetail from "../components/ProductDetail.jsx";
 import CartSection from "../components/Cart";
 
 const Cart = () => {
-    const [cartItems, setCartItems] = useState([]);
+    // const [cartItems, setCartItems] = useState([]);
+    //
+    // useEffect(() => {
+    //     const fetchCartItems = async () => {
+    //         const response = await axios.get('http://localhost:5000/getAllProductsFromCart');
+    //         setCartItems(response.data);
+    //     };
+    //     fetchCartItems();
+    // }, []);
 
-    useEffect(() => {
-        const fetchCartItems = async () => {
-            const response = await axios.get('http://localhost:5000/getAllProductsFromCart');
-            setCartItems(response.data);
-        };
-        fetchCartItems();
-    }, []);
-
-    const removeItem = async (id) => {
-        await axios.delete(`http://localhost:5000/deleteProductFromCart/${id}`);
-        setCartItems(cartItems.filter(item => item._id !== id));
-    };
+    // const removeItem = async (id) => {
+    //     await axios.delete(`http://localhost:5000/deleteProductFromCart/${id}`);
+    //     setCartItems(cartItems.filter(item => item._id !== id));
+    // };
     return (
         <section className="heroSectionProducts pageSection ">
             <div className="overlay-wrapper">
@@ -30,10 +30,9 @@ const Cart = () => {
                 </div>
                 <div className="overlay"></div>
             </div>
-            <div>
-
+            <div className="max-w-[1260px] mx-auto">
+                <CartSection />
             </div>
-            <CartSection />
         </section>
     );
 };

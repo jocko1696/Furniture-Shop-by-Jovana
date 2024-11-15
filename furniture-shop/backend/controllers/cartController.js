@@ -4,31 +4,6 @@ require("../models/cartModel");
 const mongoose = require("mongoose");
 const CartItem = mongoose.model("CartModel");
 
-
-
-// const addProductToCart = asyncHandler(async (req, res) => {
-//
-//     console.log('Dodavanje itema u cart.');
-//     console.log(req.body);
-//     const { productId, name, price,image } = req.body;
-//     try {
-//         // Check if the product already exists in the cart
-//         const existingItem = await CartItem.findOne({ productId });
-//         if (existingItem) {
-//             // If it exists, increment the quantity
-//             existingItem.quantity += 1;
-//             await existingItem.save();
-//             res.json(existingItem);
-//         } else {
-//             // If it doesn't exist, create a new cart item
-//             const cartItem = new CartItem({ productId, name, price, image, quantity: 1 });
-//             await cartItem.save();
-//             res.status(201).json(cartItem);
-//         }
-//     } catch (error) {
-//         res.status(500).json({ message: 'Failed to add to cart' });
-//     }
-// });
 const addProductToCart = asyncHandler(async (req, res) => {
     console.log('Attempting to add item to cart.');
     console.log('Request body:', req.body);
@@ -105,7 +80,7 @@ const deleteProductFromCart = asyncHandler(async (req, res) => {
         }
 
         // Emit event to notify all connected clients about the cart update
-        req.io.emit('cartUpdated');
+        // req.io.emit('cartUpdated');
 
         console.log('Item removed from cart:', deletedItem);
         res.json({ message: 'Item removed from cart' });
@@ -135,12 +110,22 @@ const calculateTotalPrice = asyncHandler(async (req, res) => {
     }
 });
 
+
+const cartUpdated = asyncHandler(async (req, res) => {
+    // Handle the cart update (for example, fetch updated cart data)
+    calculateTotalPrice(); // Update the total price from the server
+    res.status(200).send('Cart updated');
+});
+
+
+
 module.exports = {
     addProductToCart,
     getAllProductsFromCart,
     deleteCart,
     deleteProductFromCart,
-    calculateTotalPrice
+    calculateTotalPrice,
+    cartUpdated
 
 
 }

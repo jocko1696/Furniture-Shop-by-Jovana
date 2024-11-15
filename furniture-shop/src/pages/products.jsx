@@ -100,7 +100,7 @@ console.log(updatedCheckedState);
         try {
             const response = await axios.get(`http://localhost:5000/productsByParams?categories=${selectedCategories}&page=${page}&search=${search}`).then(function (response) {
                 setProducts(response.data.docs);
-                console.log(response.data.docs);
+                // console.log(response.data.docs);
                 // setTotalPages(response.data.totalPages);
                 setPagination({
                     totalPages: response.data.totalPages,

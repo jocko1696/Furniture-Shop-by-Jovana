@@ -209,8 +209,8 @@ nav a.active,
     color: #FB2E86;
 }
 
-.shopNow, .contactUs {
-    font-family: 'Josefin Sans', sans-serif;
+.shopNow, .contactUs,.clearCart {
+    font-family: 'Josefin Sans', sans-serif !important;
     font-size: 17px;
     line-height: 20px;
     letter-spacing: 0.02em;
@@ -229,6 +229,16 @@ nav a.active,
 }
 
 .shopNow:hover {
+    opacity: 0.8;
+    transition: .2s;
+
+}
+
+.clearCart{
+    font-size:15px!important;
+}
+
+.clearCart:hover {
     opacity: 0.8;
     transition: .2s;
 
@@ -1127,7 +1137,7 @@ nav a.active,
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
 }
 
 .cart-table,
@@ -1145,11 +1155,33 @@ nav a.active,
 .cart-table td {
     padding: 10px;
     text-align: left;
-    border: 1px solid #ddd;
+    border-top: 1px solid #E1E1E4;
 }
 
-.cart-table th {
-    background-color: #f7f7f7;
+
+.cart-table th,  .cart-totals-heading {
+    background-color: transparent;
+    color: #111C85;
+    font-weight: bolder;
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-family: "Josefin Sans",sans-serif;
+}
+
+.cart-table thead th{
+    border:unset!important;
+}
+
+.cart-table tbody td{
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-family: "Josefin Sans",sans-serif;
+    color: #15245E;
+}
+
+.cart-table .row-1 td{
+    border-top:unset !important;
 }
 
 .cart-product-image {
@@ -1167,7 +1199,10 @@ nav a.active,
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    border-top: 1px solid #ddd;
+    border: 1px solid #ddd;
+    background-color: #E8E6F1;
+    opacity:0.9;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .proceed-button {
