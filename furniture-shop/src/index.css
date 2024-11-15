@@ -1226,6 +1226,17 @@ nav a.active,
     font-size: 22px;
 }
 
+
+.shippingForm .error{
+    color:#CB1E1E;
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    margin-top: 4px;
+    font-family: "Josefin Sans",sans-serif;
+}
+
+
 /* Mobile Responsiveness */
 @media (max-width: 600px) {
     .cart-container {

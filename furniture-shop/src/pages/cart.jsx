@@ -3,6 +3,7 @@ import BreadCrumb from "../components/BreadCrumb.jsx";
 import axios from "axios";
 import ProductDetail from "../components/ProductDetail.jsx";
 import CartSection from "../components/Cart";
+import ShippingForm from "../components/ShippingForm";
 
 const Cart = () => {
     // const [cartItems, setCartItems] = useState([]);
@@ -32,6 +33,9 @@ const Cart = () => {
             </div>
             <div className="max-w-[1260px] mx-auto">
                 <CartSection />
+            </div>
+            <div>
+                <ShippingForm />
             </div>
         </section>
     );
