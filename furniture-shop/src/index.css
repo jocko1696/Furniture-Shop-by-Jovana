@@ -209,7 +209,7 @@ nav a.active,
     color: #FB2E86;
 }
 
-.shopNow, .contactUs,.clearCart {
+.shopNow, .contactUs,.clearCart, .continueShopping {
     font-family: 'Josefin Sans', sans-serif !important;
     font-size: 17px;
     line-height: 20px;
@@ -219,6 +219,10 @@ nav a.active,
     cursor: pointer;
     clip-path: polygon(6% 0%, 100% 0%, 94% 100%, 0% 100%);
 
+}
+
+.continueShopping{
+    clip-path:unset!important;
 }
 
 .contactUs{
@@ -238,7 +242,7 @@ nav a.active,
     font-size:15px!important;
 }
 
-.clearCart:hover {
+.clearCart:hover, .continueShopping:hover {
     opacity: 0.8;
     transition: .2s;
 

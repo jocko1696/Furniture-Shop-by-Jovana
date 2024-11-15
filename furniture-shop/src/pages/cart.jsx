@@ -34,7 +34,7 @@ const Cart = () => {
             <div className="max-w-[1260px] mx-auto">
                 <CartSection />
             </div>
-            <div>
+            <div className="centerContainer flex justify-center ">
                 <ShippingForm />
             </div>
         </section>
