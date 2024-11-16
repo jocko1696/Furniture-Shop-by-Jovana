@@ -6,20 +6,7 @@ import CartSection from "../components/Cart";
 import ShippingForm from "../components/ShippingForm";
 
 const Cart = () => {
-    // const [cartItems, setCartItems] = useState([]);
-    //
-    // useEffect(() => {
-    //     const fetchCartItems = async () => {
-    //         const response = await axios.get('http://localhost:5000/getAllProductsFromCart');
-    //         setCartItems(response.data);
-    //     };
-    //     fetchCartItems();
-    // }, []);
 
-    // const removeItem = async (id) => {
-    //     await axios.delete(`http://localhost:5000/deleteProductFromCart/${id}`);
-    //     setCartItems(cartItems.filter(item => item._id !== id));
-    // };
     return (
         <section className="heroSectionProducts pageSection ">
             <div className="overlay-wrapper">
@@ -31,10 +18,10 @@ const Cart = () => {
                 </div>
                 <div className="overlay"></div>
             </div>
-            <div className="max-w-[1260px] mx-auto">
+            <div className="max-w-[1260px] mx-auto py-[100px]">
                 <CartSection />
             </div>
-            <div className="centerContainer flex justify-center ">
+            <div className="centerContainer shippingContainer flex justify-center">
                 <ShippingForm />
             </div>
         </section>

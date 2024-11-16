@@ -103,7 +103,7 @@ const ShippingForm = () => {
             <div className="shipping-info">
                 <h2>Shipping Information</h2>
                 <div className="flex flex-row flex-md-col justify-between">
-                    <div>
+                    <div className="w-6/12 mr-5">
 
                         <input
                             type="text"
@@ -124,7 +124,7 @@ const ShippingForm = () => {
                             </p>
                         )}
                     </div>
-                    <div>
+                    <div className="w-6/12">
                         <input
                             type="text"
                             name="lastName"
@@ -196,7 +196,7 @@ const ShippingForm = () => {
                     )}
                 </div>
                 <div className="flex flex-row flex-md-col">
-                    <div className="w-full">
+                    <div className="w-6/12 mr-5">
                         <input
                             type="text"
                             name="country"
@@ -216,7 +216,7 @@ const ShippingForm = () => {
                             </p>
                         )}
                     </div>
-                    <div>
+                    <div  className="w-6/12">
                         <input
                             type="text"
                             name="postalCode"

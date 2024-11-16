@@ -240,6 +240,7 @@ nav a.active,
 
 .clearCart{
     font-size:15px!important;
+    clip-path: unset!important;
 }
 
 .clearCart:hover, .continueShopping:hover {
@@ -1229,7 +1230,11 @@ nav a.active,
     left: 52px;
     font-size: 22px;
 }
-
+.shippingForm{
+    background-color: #E8E6F1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+    padding:30px!important;
+}
 
 .shippingForm .error{
     color:#CB1E1E;
@@ -1240,6 +1245,46 @@ nav a.active,
     font-family: "Josefin Sans",sans-serif;
 }
 
+.shippingForm div{
+    margin-bottom:30px;
+
+}
+
+.shippingForm input{
+    border:unset;
+    border-bottom:1px solid #BFC6E0 !important;
+    color: #111C85;
+    font-size: 15px;
+    /*letter-spacing: 2px;*/
+    font-family: "Josefin Sans", sans-serif;
+    transition:all 0.2s ease-in-out;
+}
+
+.shippingForm input:focus-visible,
+.shippingForm input:focus{
+    outline:none!important;
+    box-shadow: none!important;
+}
+
+.shippingForm input:hover{
+    background-color: #A297D9;
+    opacity:0.4;
+}
+
+.shippingForm .contact-info h2, .shippingForm .shipping-info h2{
+    background-color: transparent;
+    color: #111C85;
+    font-weight: bolder;
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-family: "Josefin Sans", sans-serif;
+    margin-bottom:20px;
+}
+
+.shippingContainer{
+    padding-bottom: 100px!important;
+    background-color: transparent !important;
+}
 
 /* Mobile Responsiveness */
 @media (max-width: 600px) {
