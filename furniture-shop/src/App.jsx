@@ -15,6 +15,7 @@ import RegisterPage from "./pages/register"
 import Wishlist from "./pages/wishlist"
 import Cart from "./pages/cart"
 import AboutUs from "./pages/about-us"
+import OrderCompleted from "./pages/order-completed"
 import {AuthProvider} from "./context/useAuthContext";
 
 
@@ -37,6 +38,7 @@ function App() {
                     <Route path='/cart' element={<Cart/>}/>
                     <Route path='/about-us' element={<AboutUs/>}/>
                     <Route path='/register' element={<RegisterPage/>}/>
+                    <Route path='/order-completed' element={<OrderCompleted/>}/>
                 </Routes>
                 <HeroFooter/>
                 <FooterComponent/>

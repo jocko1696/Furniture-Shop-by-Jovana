@@ -6,12 +6,6 @@ import {NavLink} from "react-router-dom";
 
 export default function Navbar() {
 
-    // const [showNavbar, setShowNavbar] = useState(false)
-    //
-    // const handleShowNavbar = () => {
-    //     setShowNavbar(!showNavbar)
-    // }
-
     return (
         <section className="sectionNavbar bg-white py-[15px]">
             <header className="navbar centerContainer flex justify-between items-center py-5">

@@ -104,7 +104,7 @@ const Cart = () => {
                         <span className="py-4">Totals:</span>
                         <span className="py-4">${totalPrice.toFixed(2)}</span>
                     </div>
-                    <button className="proceed-button py-4">Proceed to Checkout</button>
+                    <a href="#shoppingForm" className="proceed-button py-4">Proceed to Checkout</a>
                 </div>
 
 

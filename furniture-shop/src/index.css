@@ -225,6 +225,12 @@ nav a.active,
     clip-path:unset!important;
 }
 
+.continueShopping.btn-disabled{
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
 .contactUs{
     display:flex;
     justify-content: center;
@@ -1140,7 +1146,7 @@ nav a.active,
 .cart-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 80px;
     padding: 20px;
     /*border: 1px solid #ddd;*/
 }
@@ -1231,8 +1237,8 @@ nav a.active,
     font-size: 22px;
 }
 .shippingForm{
-    background-color: #E8E6F1;
-    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+    /*background-color: #E8E6F1;*/
+    /*box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;*/
     padding:30px!important;
 }
 

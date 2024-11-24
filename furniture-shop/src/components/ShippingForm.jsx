@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import validator from 'validator';
+import ActionButton from "../components/ActionButton";
 
 const ShippingForm = () => {
     const [formData, setFormData] = useState({
@@ -55,7 +56,7 @@ const ShippingForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="shippingForm w-full">
+        <form onSubmit={handleSubmit} className="shippingForm w-full" id="shoppingForm">
             <div className="contact-info">
                 <h2>Contact Information</h2>
                 <div>
@@ -238,8 +239,9 @@ const ShippingForm = () => {
                     </div>
                 </div>
             </div>
-            <button type="submit"
-               className="continueShopping text-white flex items-center justify-center bg-pink-600 px-[50px] py-[15px]">Continue Shipping</button>
+            {/*<button type="submit"*/}
+            {/*   className="continueShopping text-white flex items-center justify-center bg-pink-600 px-[50px] py-[15px]">Continue Shopping</button>*/}
+       <ActionButton />
         </form>
     );
 };
