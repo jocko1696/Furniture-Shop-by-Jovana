@@ -1277,7 +1277,7 @@ nav a.active,
     opacity:0.4;
 }
 
-.shippingForm .contact-info h2, .shippingForm .shipping-info h2{
+.shippingForm .contact-info h2, .shippingForm .shipping-info h2, .shippingForm .payment-type-info h2{
     background-color: transparent;
     color: #111C85;
     font-weight: bolder;

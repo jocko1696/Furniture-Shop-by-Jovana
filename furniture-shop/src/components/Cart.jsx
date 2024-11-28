@@ -28,15 +28,6 @@ const Cart = () => {
 
         fetchCartItems();
 
-        // socket.on('cartUpdated', (data) => {
-        //     // Update total price when cart is updated
-        //     setTotalPrice(data.totalPrice);
-        //     fetchCartItems();  // Optionally refresh the cart items
-        // });
-        //
-        // return () => {
-        //     socket.off('cartUpdated');
-        // };
     }, []);
 
     // Function to calculate the total price of the entire cart

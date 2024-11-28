@@ -13,6 +13,7 @@ const ShippingForm = () => {
         city: '',
         country: '',
         postalCode: '',
+        paymentMethod: "cod",
     });
 
     const [errors, setErrors] = useState({});
@@ -40,6 +41,8 @@ const ShippingForm = () => {
         if (!formData.address) formErrors.address = 'Address is required';
         if (!formData.city) formErrors.city = 'City is required';
         if (!formData.country) formErrors.country = 'Country is required';
+        if (!formData.paymentMethod)
+            errors.paymentMethod = "Please select a payment method";
         if (!formData.postalCode || !validator.isPostalCode(formData.postalCode, 'any')) {
             formErrors.postalCode = 'Invalid postal code';
         }
@@ -51,7 +54,15 @@ const ShippingForm = () => {
         e.preventDefault();
         if (validate()) {
             // handle form submission
-            console.log('Form submitted:', formData);
+            // console.log('Form submitted:', formData);
+            if (formData.paymentMethod === "stripe") {
+                // Redirect to Stripe payment page
+                window.location.href = "/stripe-payment"; // Replace with your Stripe route
+            } else if (formData.paymentMethod === "cod") {
+                // Handle Cash on Delivery
+                console.log("Cash on delivery chosen. Proceeding with order...");
+                // You can call an API to handle COD orders
+            }
         }
     };
 
@@ -237,6 +248,36 @@ const ShippingForm = () => {
                             </p>
                         )}
                     </div>
+                </div>
+            </div>
+            <div className="payment-type-info">
+                <h2>Payment method</h2>
+                <div>
+                    <label>
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="cod"
+                            checked={formData.paymentMethod === "cod"}
+                            onChange={handleChange}
+                        />
+                        Cash on Delivery
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="stripe"
+                            checked={formData.paymentMethod === "stripe"}
+                            onChange={handleChange}
+                        />
+                        Pay with Stripe
+                    </label>
+                    {errors.paymentMethod && (
+                        <p style={{ color: "red" }}>{errors.paymentMethod}</p>
+                    )}
                 </div>
             </div>
             {/*<button type="submit"*/}
