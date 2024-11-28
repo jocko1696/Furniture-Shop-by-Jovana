@@ -18,7 +18,7 @@ const LatestProducts = (tabName) => {
             .then((data) => {
                 // console.log(data);
                 setFurnitureData(data);
-                console.log(data);
+                // console.log(data);
             })
             .catch((err) => {
                 console.log(err.message);

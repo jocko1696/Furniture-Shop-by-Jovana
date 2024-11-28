@@ -6,7 +6,6 @@ import CartSection from "../components/Cart";
 import ShippingForm from "../components/ShippingForm";
 
 const Cart = () => {
-
     return (
         <section className="heroSectionProducts pageSection ">
             <div className="overlay-wrapper">
@@ -19,11 +18,11 @@ const Cart = () => {
                 <div className="overlay"></div>
             </div>
             <div className="max-w-[1260px] mx-auto py-[100px]">
-                <CartSection />
+                <CartSection  />
             </div>
-            <div className="centerContainer shippingContainer flex justify-center">
-                <ShippingForm />
-            </div>
+            {/*<div className="centerContainer shippingContainer flex justify-center">*/}
+            {/*    <ShippingForm cartItems={cartItems} />*/}
+            {/*</div>*/}
         </section>
     );
 };

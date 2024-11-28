@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import validator from 'validator';
 import ActionButton from "../components/ActionButton";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
-const ShippingForm = () => {
+const ShippingForm = ({ cartItems }) => {
     const [formData, setFormData] = useState({
         email: '',
         phone: '',
@@ -17,6 +19,9 @@ const ShippingForm = () => {
     });
 
     const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const navigate = useNavigate(); // For redirecting to success page
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -32,7 +37,10 @@ const ShippingForm = () => {
         if (!validator.isEmail(formData.email)) {
             formErrors.email = 'Invalid email address';
         }
-        if (!validator.isMobilePhone(formData.phone, 'any', { strictMode: true })) {
+        // if (!validator.isMobilePhone(formData.phone, 'any', { strictMode: true })) {
+        //     formErrors.phone = 'Invalid phone number';
+        // }
+        if (!validator.isMobilePhone(formData.phone, 'any')) {
             formErrors.phone = 'Invalid phone number';
         }
         // Shipping Info validation
@@ -50,19 +58,47 @@ const ShippingForm = () => {
         return Object.keys(formErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const submitToDatabase = (data) => {
+        // Replace this with the actual API call to save customer data
+
+        console.log("Submitting customer data to the database:", data);
+        // Example: fetch("/api/submit-order", { method: "POST", body: JSON.stringify(data), ... });
+    };
+    // Handle form submission
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (validate()) {
-            // handle form submission
-            // console.log('Form submitted:', formData);
-            if (formData.paymentMethod === "stripe") {
-                // Redirect to Stripe payment page
-                window.location.href = "/stripe-payment"; // Replace with your Stripe route
-            } else if (formData.paymentMethod === "cod") {
-                // Handle Cash on Delivery
-                console.log("Cash on delivery chosen. Proceeding with order...");
-                // You can call an API to handle COD orders
-            }
+        setIsSubmitting(true);
+
+        // Validate form before submitting
+        if (!validate()) {
+            setIsSubmitting(false);
+            return;
+        }
+
+        // Prepare the data to send to backend (shipping + cart items)
+        const orderData = {
+            ...formData,   // Shipping information
+            cartItems,     // Cart items passed from Cart component
+        };
+
+        try {
+
+                if (formData.paymentMethod === "stripe") {
+                    // If Stripe payment is selected, redirect to Stripe checkout
+                    // window.location.href = "/stripe-payment"; // Replace with your Stripe route
+                    console.log("Ovo je STRIPE PAYMENT");
+                } else if (formData.paymentMethod === "cod") {
+                    // If Cash on Delivery is selected, submit the data to the database
+                    // Call your API to process the order and store customer data
+                    console.log("Ovo je COD PAYMENT");
+                    submitToDatabase(orderData); // Call your function to save data in the database
+                    console.log(orderData);
+
+                    // Redirect to success page after successful COD submission
+                    navigate("/success"); // Navigate to your success page
+                }
+        } catch (error) {
+            console.error('Error submitting order:', error);
         }
     };
 
@@ -280,9 +316,10 @@ const ShippingForm = () => {
                     )}
                 </div>
             </div>
+
             {/*<button type="submit"*/}
             {/*   className="continueShopping text-white flex items-center justify-center bg-pink-600 px-[50px] py-[15px]">Continue Shopping</button>*/}
-       <ActionButton />
+       <ActionButton handleSubmit={handleSubmit} paymentMethod={formData.paymentMethod} />
         </form>
     );
 };
