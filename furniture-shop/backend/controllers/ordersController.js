@@ -64,6 +64,8 @@ const createOrder = asyncHandler(async (req, res) => {
 
 const sendOrderEmails = asyncHandler(async (clientDetails, items)=>{
     try {
+
+
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com", // Replace with your SMTP host
             port: 587, // Secure port
@@ -79,14 +81,63 @@ const sendOrderEmails = asyncHandler(async (clientDetails, items)=>{
             },
         });
 
+        const generateEmailHTML = (isAdmin = false) => {
+            const itemsHTML = items
+                .map(
+                    (item) => `
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">
+                            <img src="${item.image}" alt="${item.name}" style="width: 100px; height: auto;" />
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${item.name}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${item.quantity}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">$${item.price.toFixed(2)}</td>
+                    </tr>`
+                )
+                .join("");
+
+            const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+
+            const customerName = `${clientDetails.firstName} ${clientDetails.lastName}`;
+            const address = `${clientDetails.address}, ${clientDetails.city}, ${clientDetails.postalCode}`;
+
+            const greeting = isAdmin
+                ? `<p>A new order has been received from ${customerName}.</p>`
+                : `<p>Dear ${customerName},</p><p>Thank you for your order! Below are the details:</p>`;
+
+            return `
+            <div style="font-family: Arial, sans-serif; line-height: 1.5;">
+                <h1 style="color: #4CAF50;">${isAdmin ? "New Order Received" : "Order Confirmation"}</h1>
+                ${greeting}
+                <table style="border-collapse: collapse; width: 100%; margin-bottom: 20px;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Product Image</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Product Name</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Quantity</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${itemsHTML}
+                    </tbody>
+                </table>
+                <p><strong>Total Price:</strong> $${totalPrice}</p>
+                ${!isAdmin ? `<p><strong>Shipping Address:</strong> ${address}</p>` : ""}
+                <p>${isAdmin ? "Please process the order as soon as possible." : "If you have any questions, feel free to contact us."}</p>
+                <p>Best regards,<br>Your Company Team</p>
+            </div>`;
+        };
+
         // Customer email content
         const customerEmail = {
             from: process.env.SMTP_USERNAME,
             to: clientDetails.email,
             subject: "Your Order Confirmation",
-            text: `Thank you for your order, ${clientDetails.firstName}! Here are your order details:\n\n${items.map(
-                (item) => `${item.name} - $${item.price} x ${item.quantity}`
-            ).join("\n")}\n\nTotal: $${items.reduce((acc, item) => acc + item.price * item.quantity, 0)}`,
+            // text: `Thank you for your order, ${clientDetails.firstName}! Here are your order details:\n\n${items.map(
+            //     (item) => `${item.name} - $${item.price} x ${item.quantity}`
+            // ).join("\n")}\n\nTotal: $${items.reduce((acc, item) => acc + item.price * item.quantity, 0)}`,
+            html: generateEmailHTML(false), // Customer version
         };
 
         // Admin email content
@@ -94,9 +145,8 @@ const sendOrderEmails = asyncHandler(async (clientDetails, items)=>{
             from: clientDetails.email,
             to: process.env.SMTP_USERNAME,
             subject: "New Order Received",
-            text: `A new order has been received:\n\nClient: ${clientDetails.firstName} ${clientDetails.lastName}\nEmail: ${clientDetails.email}\nPhone: ${clientDetails.phone}\n\nOrder Details:\n${items.map(
-                (item) => `${item.name} - $${item.price} x ${item.quantity}`
-            ).join("\n")}\n\nTotal: $${items.reduce((acc, item) => acc + item.price * item.quantity, 0)}`,
+
+            html: generateEmailHTML(true), // Admin version
         };
 
         // Send both emails
