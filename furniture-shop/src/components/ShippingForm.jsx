@@ -94,6 +94,12 @@ const ShippingForm = ({cartItems}) => {
 
                 // Check the response
                 console.log("Stripe session created successfully:", response.data);
+                // Create the order for STRIPE
+                const orderResponse = await axios.post(
+                    "http://localhost:5000/create-order",
+                    orderData,
+                    { headers: { "Content-Type": "application/json" } }
+                );
 
                 // Redirect to the Stripe checkout page
                 window.location.href = response.data.url;
