@@ -51,14 +51,17 @@ const writeContact = asyncHandler(async (req, res) => {
         host: 'smtp.gmail.com',
         port: 587, // or 465 for SSL
         secure: false, // true for 465, false for other ports
-        // requireTLS:true,
+         //requireTLS:true,
         auth: {
-            user: process.env.EMAIL,
-            pass: process.env.PASSWORD,
+            user: process.env.SMTP_USERNAME,
+            pass: process.env.SMTP_PASSWORD,
 
         },
-        //debug: true, // show debug output
-        //logger: true // log information in console
+        debug: true, // show debug output
+        logger: true, // log information in console
+        tls: {
+            rejectUnauthorized: false, // Allow self-signed certificates
+        },
     });
 
     transporter.verify(function (error, success) {
@@ -71,7 +74,7 @@ const writeContact = asyncHandler(async (req, res) => {
 
     const mailOptions = {
         from: email,
-        to: "joca.gluhovic@gmail.com",
+        to: process.env.SMTP_USERNAME,
         subject: 'New Contact Form Submission',
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     };
