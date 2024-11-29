@@ -20,9 +20,6 @@ const Cart = () => {
             <div className="max-w-[1260px] mx-auto py-[100px]">
                 <CartSection  />
             </div>
-            {/*<div className="centerContainer shippingContainer flex justify-center">*/}
-            {/*    <ShippingForm cartItems={cartItems} />*/}
-            {/*</div>*/}
         </section>
     );
 };
