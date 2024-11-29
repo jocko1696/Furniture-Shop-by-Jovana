@@ -92,7 +92,7 @@ const sendOrderEmails = asyncHandler(async (clientDetails, items)=>{
         // Admin email content
         const adminEmail = {
             from: clientDetails.email,
-            to: clientDetails.email,
+            to: process.env.SMTP_USERNAME,
             subject: "New Order Received",
             text: `A new order has been received:\n\nClient: ${clientDetails.firstName} ${clientDetails.lastName}\nEmail: ${clientDetails.email}\nPhone: ${clientDetails.phone}\n\nOrder Details:\n${items.map(
                 (item) => `${item.name} - $${item.price} x ${item.quantity}`
