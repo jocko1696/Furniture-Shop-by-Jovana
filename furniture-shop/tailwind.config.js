@@ -6,7 +6,11 @@ export default {
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'custom-gray': '#9295AA',
+      },
+    },
     screens: {
       '2xl': {'max': '1780'},
       // => @media (max-width: 1535px) { ... }

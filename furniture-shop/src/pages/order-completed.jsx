@@ -16,17 +16,19 @@ const OrderCompleted = () => {
                 </div>
                 <div className="overlay"></div>
             </div>
-            <div className="max-w-[1260px] mx-auto py-[100px]">
-              <div className="relative">
-                  <img src="../assets/Vector 15.svg"  alt=".."/>
-                  <h2>Your Order Is Completed! </h2>
-                  <p>Thank you for your order! Your order is being processed and will be completed within 3-6
-                      hours. You will receive an email confirmation when your order is completed.
-                  </p>
+            <div className="max-w-[1260px] mx-auto py-[100px] border-2 border-dotted border-custom-gray my-[100px]">
+                <div className="relative centerContainer">
+                    <div className="flex justify-center">
+                        <img src="../../public/images/Vector 15.svg" alt=".."/>
+                    </div>
+                    <h2 className="sectionHeadingText text-center">Your Order Is Completed! </h2>
+                    <p className="max-w-[700px] mx-auto order-completed-desc text-center ">Thank you for your order! Your order is being processed and will be completed within 3-6
+                        hours. You will receive an email confirmation when your order is completed.
+                    </p>
 
-                  <img className="absolute" src="../assets/checklist 1.svg"  alt=".."/>
-                  <img className="absolute" src="../assets/clock 1.svg"  alt=".."/>
-              </div>
+                    <img className="absolute checklistImg" src="../../public/images/checklist 1.svg" alt=".." />
+                    <img className="absolute clockImg" src="../../public/images/clock 1.svg" alt=".."/>
+                </div>
             </div>
         </section>
     );

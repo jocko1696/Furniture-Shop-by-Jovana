@@ -1292,6 +1292,22 @@ nav a.active,
     background-color: transparent !important;
 }
 
+.order-completed-desc{
+    font-family: 'Josefin Sans', sans-serif !important;
+    color: #9295AA;
+}
+
+.clockImg{
+    top: -150px;
+    left: -47px;
+}
+
+.checklistImg{
+    right: -40px;
+    bottom:-123px;
+}
+
+
 /* Mobile Responsiveness */
 @media (max-width: 600px) {
     .cart-container {
