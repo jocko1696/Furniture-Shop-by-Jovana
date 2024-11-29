@@ -16,7 +16,7 @@ const OrderCompleted = () => {
                 </div>
                 <div className="overlay"></div>
             </div>
-            <div className="max-w-[1260px] mx-auto py-[100px] border-2 border-dotted border-custom-gray my-[100px]">
+            <div className="max-w-[900px] mx-auto py-[100px] border-2 border-dotted border-custom-gray my-[100px]">
                 <div className="relative centerContainer">
                     <div className="flex justify-center">
                         <img src="../../public/images/Vector 15.svg" alt=".."/>

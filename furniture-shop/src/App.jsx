@@ -19,6 +19,8 @@ import OrderCompleted from "./pages/order-completed"
 import OrderCanceled from "./pages/order-canceled"
 import {AuthProvider} from "./context/useAuthContext";
 
+import Administration from "../cms/pages/administration"
+
 
 function App() {
 
@@ -41,6 +43,7 @@ function App() {
                     <Route path='/register' element={<RegisterPage/>}/>
                     <Route path='/order-completed' element={<OrderCompleted/>}/>
                     <Route path='/order-canceled' element={<OrderCanceled/>}/>
+                    <Route path='/administration' element={<Administration/>}/>
                 </Routes>
                 <HeroFooter/>
                 <FooterComponent/>
