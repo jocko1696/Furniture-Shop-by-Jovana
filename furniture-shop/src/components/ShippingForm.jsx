@@ -58,12 +58,7 @@ const ShippingForm = ({cartItems}) => {
         return Object.keys(formErrors).length === 0;
     };
 
-    const submitToDatabase = (data) => {
-        // Replace this with the actual API call to save customer data
 
-        console.log("Submitting customer data to the database:", data);
-        // Example: fetch("/api/submit-order", { method: "POST", body: JSON.stringify(data), ... });
-    };
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -75,11 +70,6 @@ const ShippingForm = ({cartItems}) => {
             return;
         }
 
-        // Prepare the data to send to backend (shipping + cart items)
-        // const orderData = {
-        //     ...formData,   // Shipping information
-        //     cartItems,     // Cart items passed from Cart component
-        // };
         const orderData = {
             items: cartItems, // Cart items array
             clientDetails: { ...formData } // Everything else in formData
@@ -88,23 +78,7 @@ const ShippingForm = ({cartItems}) => {
         try {
 
             if (formData.paymentMethod === "stripe") {
-                // // If Stripe payment is selected, redirect to Stripe checkout
-                // window.location.href = "http://localhost:5000/create-checkout-session"; // Replace with your Stripe route
-                // console.log("Ovo je STRIPE PAYMENT");
-                // If Stripe payment is selected, initiate the checkout session
-                // const response = await fetch("http://localhost:5000/create-checkout-session", {
-                //     method: "POST",
-                //     headers: {
-                //         "Content-Type": "application/json",
-                //     },
-                //     body: JSON.stringify(orderData),
-                // });
-                //
-                // if (!response.ok) {
-                //     throw new Error("Failed to create checkout session");
-                // }
-                //
-                // const data = await response.json();
+
                 console.log("Sending order data to Stripe:", orderData);
 
                 // Make an axios POST request
@@ -123,15 +97,19 @@ const ShippingForm = ({cartItems}) => {
 
                 // Redirect to the Stripe checkout page
                 window.location.href = response.data.url;
-            } else if (formData.paymentMethod === "cod") {
-                // If Cash on Delivery is selected, submit the data to the database
-                // Call your API to process the order and store customer data
-                console.log("Ovo je COD PAYMENT");
-                submitToDatabase(orderData); // Call your function to save data in the database
-                console.log(orderData);
 
-                // Redirect to success page after successful COD submission
-                navigate("/success"); // Navigate to your success page
+            } else if (formData.paymentMethod === "cod") {
+                // Create the order for COD
+                const response = await axios.post(
+                    "http://localhost:5000/create-order",
+                    orderData,
+                    { headers: { "Content-Type": "application/json" } }
+                );
+
+                console.log("Order created successfully:", response.data);
+
+                // Navigate to success page
+                navigate("/order-completed");
             }
         } catch (error) {
             // Handle errors during the request

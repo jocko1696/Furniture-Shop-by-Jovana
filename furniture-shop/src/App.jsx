@@ -16,6 +16,7 @@ import Wishlist from "./pages/wishlist"
 import Cart from "./pages/cart"
 import AboutUs from "./pages/about-us"
 import OrderCompleted from "./pages/order-completed"
+import OrderCanceled from "./pages/order-canceled"
 import {AuthProvider} from "./context/useAuthContext";
 
 
@@ -39,6 +40,7 @@ function App() {
                     <Route path='/about-us' element={<AboutUs/>}/>
                     <Route path='/register' element={<RegisterPage/>}/>
                     <Route path='/order-completed' element={<OrderCompleted/>}/>
+                    <Route path='/order-canceled' element={<OrderCanceled/>}/>
                 </Routes>
                 <HeroFooter/>
                 <FooterComponent/>

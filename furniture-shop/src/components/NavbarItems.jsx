@@ -91,8 +91,8 @@ const NavbarItems = (props) => {
                                             <div className="pr-[50px] ">
                                                 <p className="pb-[15px] font-semibold text-lg">{subLink.head}</p>
                                                 {
-                                                    subLink?.subLinks?.map((subcategories) => (
-                                                        <div className="py-0.5">
+                                                    subLink?.subLinks?.map((subcategories, index) => (
+                                                        <div key={`${index}-${subcategories.name}`} className="py-0.5">
                                                             <NavLink
                                                                 to={subcategories.link}
 
