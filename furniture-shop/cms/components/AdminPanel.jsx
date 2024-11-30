@@ -1,86 +1,39 @@
-import React from "react";
-import { MantineProvider, AppShell, Box, Group, Text, Tabs } from '@mantine/core'; // Import necessary Mantine components
-import { HomeTab, ProductsTab } from "./Tabs.jsx"; // Your Tab Components for Home and Products
-import { useLocation } from 'react-router-dom'; // To manage active links
-import { NavLink } from 'react-router-dom';
+// components/AdminPanel.jsx
+import React, { useState } from 'react';
+import { Box, Text } from '@mantine/core';
+import Sidebar from './Sidebar';
 
 const AdminPanel = () => {
-    const location = useLocation(); // Get current route location
+    const [activePage, setActivePage] = useState('home');
+
+    const renderPage = () => {
+        switch (activePage) {
+            case 'home':
+                return <Text size="lg" style={{ color: 'rgb(108, 43, 217)' }}>Welcome to the Home Tab!</Text>;
+            case 'products':
+                return <Text size="lg" style={{ color: 'rgb(108, 43, 217)' }}>Manage your Products here!</Text>;
+            default:
+                return <Text size="lg" style={{ color: 'rgb(108, 43, 217)' }}>Page not found</Text>;
+        }
+    };
 
     return (
-        <MantineProvider
-            withGlobalStyles
-            withNormalizeCSS
-            theme={{
-                colors: {
-                    customPurple: [
-                        "rgba(190, 144, 212, 0.1)",
-                        "rgba(190, 144, 212, 0.3)",
-                        "rgba(190, 144, 212, 0.5)",
-                        "rgba(108, 43, 217, 0.7)",
-                        "rgb(108, 43, 217)",
-                    ],
-                },
-                primaryColor: "customPurple",
-            }}
-        >
-            <AppShell
-                padding="md"
-                style={{ display: "flex", height: "100vh" }}
+        <Box style={{ display: 'flex', height: '100vh' }}>
+            {/* Sidebar */}
+            <Sidebar onNavigate={setActivePage} />
+
+            {/* Content Area */}
+            <Box
+                style={{
+                    flexGrow: 1,
+                    padding: '20px',
+                    backgroundColor: '#f4f4f4',
+                    color: 'rgb(108, 43, 217)', // Text color in content area
+                }}
             >
-                {/* Sidebar */}
-                <Box
-                    style={{
-                        width: 250,
-                        backgroundColor: "#f3f3f3",
-                        padding: "20px",
-                        display: "flex",
-                        flexDirection: "column",
-                    }}
-                >
-                    <Text align="center" size="xl" weight={500} style={{ marginBottom: '20px' }}>
-                        Admin Panel
-                    </Text>
-                    <Group direction="column" spacing="xs">
-                        {/* Use NavLink for Sidebar Navigation */}
-                        <NavLink
-                            label="Home"
-                            active={location.pathname === "/home"} // Check if the current path is '/home'
-                            component="a"
-                            href="/home"
-                            size="lg"
-                        />
-                        <NavLink
-                            label="Products"
-                            active={location.pathname === "/products"} // Check if the current path is '/products'
-                            component="a"
-                            href="/products"
-                            size="lg"
-                        />
-                        {/* Add more NavLink components here */}
-                    </Group>
-                </Box>
-
-                {/* Main Content */}
-                {/*<Box style={{ flexGrow: 1, padding: '20px' }}>*/}
-                {/*    <Tabs defaultValue="home">*/}
-                {/*        <Tabs.List>*/}
-                {/*            <Tabs.Tab value="home">Home</Tabs.Tab>*/}
-                {/*            <Tabs.Tab value="products">Products</Tabs.Tab>*/}
-                {/*        </Tabs.List>*/}
-
-                {/*        /!* Tab Panels *!/*/}
-                {/*        <Tabs.Panel value="home" pt="xs">*/}
-                {/*            <HomeTab /> /!* Home Tab Content *!/*/}
-                {/*        </Tabs.Panel>*/}
-
-                {/*        <Tabs.Panel value="products" pt="xs">*/}
-                {/*            <ProductsTab /> /!* Products Tab Content *!/*/}
-                {/*        </Tabs.Panel>*/}
-                {/*    </Tabs>*/}
-                {/*</Box>*/}
-            </AppShell>
-        </MantineProvider>
+                {renderPage()}
+            </Box>
+        </Box>
     );
 };
 

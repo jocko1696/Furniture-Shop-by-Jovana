@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar.jsx"
 import HeroFooter from "./components/HeroFooter.jsx";
 import FooterComponent from "./components/FooterComponent.jsx";
 // import {PageProvider} from "./components/PageContext.jsx";
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-dom';
 import Home from "./pages/index"
 import Blog from "./pages/blog"
 import Products from "./pages/products"
@@ -18,8 +18,27 @@ import AboutUs from "./pages/about-us"
 import OrderCompleted from "./pages/order-completed"
 import OrderCanceled from "./pages/order-canceled"
 import {AuthProvider} from "./context/useAuthContext";
+import Administration from '../cms/pages/Administration.jsx'; // Path to your Administration page
 
-import Administration from "../cms/pages/administration"
+
+const AppLayout = ({ children }) => {
+    const location = useLocation();
+
+    // Check if the current route is part of the admin panel
+    const isAdminRoute = location.pathname.startsWith('/administration');
+
+    return (
+        <>
+            {!isAdminRoute && <Header />}
+            {!isAdminRoute && <Navbar />}
+            <main>{children}</main>
+            {!isAdminRoute && <HeroFooter />}
+            {!isAdminRoute && <FooterComponent />}
+        </>
+    );
+};
+
+
 
 
 function App() {
@@ -27,8 +46,7 @@ function App() {
     return (
         <AuthProvider>
             <Router>
-                <Header/>
-                <Navbar/>
+                <AppLayout>
                 <Routes>
                     <Route path='/' element={<Home/>}></Route>
                     <Route path='/products/' element={<Products/>}/>
@@ -43,10 +61,11 @@ function App() {
                     <Route path='/register' element={<RegisterPage/>}/>
                     <Route path='/order-completed' element={<OrderCompleted/>}/>
                     <Route path='/order-canceled' element={<OrderCanceled/>}/>
-                    <Route path='/administration' element={<Administration/>}/>
+
+                    {/* Load the admin panel */}
+                    <Route path="/administration/*" element={<Administration />} />
                 </Routes>
-                <HeroFooter/>
-                <FooterComponent/>
+                </AppLayout>
             </Router>
         </AuthProvider>
 
