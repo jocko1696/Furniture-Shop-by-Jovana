@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
-import { Link, Routes, Route } from 'react-router-dom';
-import AdminPanel from './components/AdminPanel.jsx';
-import ManageProducts from './components/ManageProducts.jsx';
 import {Box, MantineProvider, Text} from "@mantine/core";
 import Sidebar from "./components/Sidebar.jsx";
+import ProductForm from "./components/ProductForm.jsx";
 
 const AdminApp = () => {
     const [activePage, setActivePage] = useState('home');
@@ -13,7 +11,8 @@ const AdminApp = () => {
             case 'home':
                 return <Text size="lg" style={{ color: 'rgb(108, 43, 217)' }}>Welcome to the Home Tab!</Text>;
             case 'products':
-                return <Text size="lg" style={{ color: 'rgb(108, 43, 217)' }}>Manage your Products here!</Text>;
+                return <ProductForm />;
+                // return <Text size="lg" style={{ color: 'rgb(108, 43, 217)' }}>Manage your Products here!</Text>;
             default:
                 return <Text size="lg" style={{ color: 'rgb(108, 43, 217)' }}>Page not found</Text>;
         }
