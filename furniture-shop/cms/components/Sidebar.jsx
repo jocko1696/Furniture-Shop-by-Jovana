@@ -15,7 +15,7 @@ const Sidebar = ({ onNavigate }) => {
                 height: '100vh',
                 backgroundColor: 'rgb(108, 43, 217)', // Primary color
                 color: 'white',
-                padding: '20px',
+                padding: ' 20px 0',
                 display: 'flex',
                 flexDirection: 'column',
             }}
@@ -26,7 +26,10 @@ const Sidebar = ({ onNavigate }) => {
             </Text>
 
             {/* Navigation Items */}
-            <Group direction="column" spacing="md">
+            <Group direction="column"
+                   spacing="md"
+                   style={{ display: 'flex', flexDirection: 'column' }}
+            >
                 {navigationItems.map((item) => (
                     <UnstyledButton
                         key={item.key}
@@ -34,7 +37,8 @@ const Sidebar = ({ onNavigate }) => {
                         style={{
                             textAlign: 'left',
                             padding: '10px 15px',
-                            borderRadius: '5px',
+                            // borderRadius: '5px',
+                            border:'1px solid white',
                             backgroundColor: 'rgba(190, 144, 212, 0.5)', // Secondary color
                             color: 'white',
                             cursor: 'pointer',

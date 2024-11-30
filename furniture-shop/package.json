@@ -20,7 +20,7 @@
     "@mantine/hooks": "^7.14.3",
     "axios": "^1.4.0",
     "dotenv": "^16.1.4",
-    "flowbite": "^1.6.5",
+    "flowbite": "^1.8.1",
     "flowbite-react": "^0.4.6",
     "js-cookie": "^3.0.5",
     "mongoose": "^7.2.2",
