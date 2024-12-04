@@ -30,6 +30,7 @@ const AdminApp = () => {
                     padding: '20px',
                     backgroundColor: '#f4f4f4',
                     color: 'rgb(108, 43, 217)', // Text color in content area
+                    height:"100%",
                 }}
             >
                 {renderPage()}

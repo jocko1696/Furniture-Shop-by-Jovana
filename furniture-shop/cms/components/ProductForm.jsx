@@ -41,7 +41,7 @@ const ProductForm = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
+        <div className="adminForm max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
             <h2 className="text-3xl font-bold text-center text-primary-bg mb-8">Add Product</h2>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 {/* Name Field */}
@@ -117,7 +117,7 @@ const ProductForm = () => {
                     />
                 </div>
 
-                {/* Sold Field */}
+                 Sold Field
                 <div className="form-group mb-6">
                     <input
                         type="number"
@@ -157,32 +157,32 @@ const ProductForm = () => {
                 </div>
 
                 {/* Code Field */}
-                <div className="form-group mb-6">
-                    <input
-                        type="text"
-                        id="code"
-                        name="code"
-                        value={formData.code}
-                        readOnly
-                        placeholder="Product Code (SKU)"
-                        required
-                        className="mt-2 p-3 w-full rounded-md border border-gray-300 focus:outline-none bg-gray-200"
-                    />
-                </div>
+                {/*<div className="form-group mb-6">*/}
+                {/*    <input*/}
+                {/*        type="text"*/}
+                {/*        id="code"*/}
+                {/*        name="code"*/}
+                {/*        value={formData.code}*/}
+                {/*        readOnly*/}
+                {/*        placeholder="Product Code (SKU)"*/}
+                {/*        required*/}
+                {/*        className="mt-2 p-3 w-full rounded-md border border-gray-300 focus:outline-none bg-gray-200"*/}
+                {/*    />*/}
+                {/*</div>*/}
 
                 {/* Tags Field */}
-                <div className="form-group mb-6">
-                    <input
-                        type="text"
-                        id="tags"
-                        name="tags"
-                        value={formData.tags}
-                        onChange={handleChange}
-                        required
-                        placeholder="Tags (separate with commas)"
-                        className="mt-2 p-3 w-full rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-bg"
-                    />
-                </div>
+                {/*<div className="form-group mb-6">*/}
+                {/*    <input*/}
+                {/*        type="text"*/}
+                {/*        id="tags"*/}
+                {/*        name="tags"*/}
+                {/*        value={formData.tags}*/}
+                {/*        onChange={handleChange}*/}
+                {/*        required*/}
+                {/*        placeholder="Tags (separate with commas)"*/}
+                {/*        className="mt-2 p-3 w-full rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-bg"*/}
+                {/*    />*/}
+                {/*</div>*/}
 
                 {/* Submit Button */}
                 <div className="form-group">

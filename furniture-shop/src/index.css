@@ -7,6 +7,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/*#root{*/
+/*    overflow: hidden;*/
+/*    overflow-y: scroll;*/
+/*}*/
+
 .centerContainer {
     max-width: 1260px;
     margin: auto;
@@ -1307,6 +1312,12 @@ nav a.active,
     bottom:-123px;
 }
 
+.adminForm{
+    height: 692px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+/*******************MEDIA QUERY SECTION**********************/
 
 /* Mobile Responsiveness */
 @media (max-width: 600px) {
@@ -1314,7 +1325,7 @@ nav a.active,
         flex-direction: column;
     }
 }
-/*******************MEDIA QUERY SECTION**********************/
+
 
 @media (max-width: 1145px){
     .pageDivider {
