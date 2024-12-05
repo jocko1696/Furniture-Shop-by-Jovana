@@ -10,7 +10,7 @@ const userRoute = require("./routes/userRoute");
 const errorHandler = require("./middleware/errorMiddleware");
 const {protect} = require("./middleware/authMiddleware");
 const {registerUser, loginUser, getUser, logout} = require("./controllers/userController");
-const { createProduct, getProducts, getProductById,getProductsByParameters } = require("./controllers/productController");
+const { createProduct, getProducts, getProductById,getProductsByParameters, deleteProduct, updateProduct } = require("./controllers/productController");
 const { getReviews } = require("./controllers/reviewController");
 const {getAllContacts,writeContact} = require("./controllers/contactController");
 const{  addProductToCart, getAllProductsFromCart, deleteCart, deleteProductFromCart,calculateTotalPrice,cartUpdated }=require("./controllers/cartController");
@@ -69,6 +69,9 @@ app.post('/login', loginUser);
 //Logout user
 app.post('/logout', logout);
 
+//create products in database
+app.post("/createProducts",createProduct);
+
 //Get all the products from database
 app.get('/products',getProducts)
 
@@ -77,6 +80,13 @@ app.get('/products/:id',getProductById)
 
 //Get products By parameters
 app.get('/productsByParams',getProductsByParameters)
+
+app.delete('/deleteProduct/:id',deleteProduct);
+
+app.put("updateProduct",updateProduct)
+
+
+/////REVIEWS//////////////
 
 //Get Google Reviews
 app.get('/getReviews',getReviews)

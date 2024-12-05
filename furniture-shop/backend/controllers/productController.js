@@ -9,7 +9,42 @@ const Product = mongoose.model("Product");
 
 
 const createProduct = asyncHandler(async (req, res) => {
-    res.send("Correct")
+    try {
+        const {
+            name,
+            price,
+            sale,
+            category,
+            quantity,
+            description,
+            image,
+            code,
+            tags,
+        } = req.body;
+
+        // Validation (optional if handled by the frontend already)
+        if (!name || !price || !category || !quantity || !description || !code || !tags) {
+            return res.status(400).json({ error: "Please fill in all required fields." });
+        }
+
+        // Create new product
+        const newProduct = new Product({
+            name,
+            price,
+            sale: sale || 0, // Default to 0 if not provided
+            category,
+            quantity,
+            description,
+            image,
+            code,
+            tags,
+        });
+
+        const savedProduct = await newProduct.save();
+        res.status(201).json({ message: "Product created successfully", product: savedProduct });
+    } catch (error) {
+        res.status(500).json({ error: "Server error. Unable to create product." });
+    }
 });
 
 
@@ -45,8 +80,6 @@ const getProductById = asyncHandler(async (req, res) => {
 });
 
 const getProductsByParameters = asyncHandler(async (req, res) => {
-
-    // console.log("U Funkcijiiiiiiiii");
 
     try {
         const {categories, page, limit = '10', search} = req.query;
@@ -86,9 +119,53 @@ const getProductsByParameters = asyncHandler(async (req, res) => {
 
 });
 
+const deleteProduct = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        // Find and delete the product
+        const product = await Product.findByIdAndDelete(id);
+
+        // Check if the product exists
+        if (!product) {
+            return res.status(404).json({ error: "Product not found" });
+        }
+
+        res.status(200).json({ message: "Product deleted successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Server error. Unable to delete product." });
+    }
+});
+
+const updateProduct = asyncHandler(async (req, res) => {
+    try {
+        // Find the product by ID and update it with the data from the request body
+        const updatedProduct = await Product.findByIdAndUpdate(
+            req.params.id,
+            {
+                $set: req.body, // Update the product fields with the data from the request
+            },
+            { new: true } // Return the updated product
+        );
+
+        if (!updatedProduct) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+
+        // Send the updated product back in the response
+        res.status(200).json(updatedProduct);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
 module.exports = {
     createProduct,
     getProducts,
     getProductById,
     getProductsByParameters,
+    deleteProduct,
+    updateProduct,
 }
