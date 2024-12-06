@@ -391,8 +391,13 @@ const ProductForm = () => {
                         type="submit"
                         className="w-full py-3 text-lg font-semibold text-white bg-primary-bg rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-primary-bg"
                     >
-                        Add Product
+                        {mode === "update"
+                            ? "Update Product"
+                            : mode === "delete"
+                                ? "Delete Product"
+                                : "Add Product"}
                     </button>
+
                 </div>
             </form>
         </div>
