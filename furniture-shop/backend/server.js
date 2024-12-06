@@ -83,7 +83,7 @@ app.get('/productsByParams',getProductsByParameters)
 
 app.delete('/deleteProduct/:id',deleteProduct);
 
-app.put("updateProduct/:id",updateProduct)
+app.put("/updateProduct/:id", updateProduct);
 
 
 /////REVIEWS//////////////
