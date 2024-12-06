@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import validate from "validate.js";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductForm = () => {
     const [formData, setFormData] = useState({
@@ -18,6 +20,7 @@ const ProductForm = () => {
     const [errors, setErrors] = useState({});
     const [mode, setMode] = useState("add"); // 'add', 'update', 'delete'
     const [products, setProducts] = useState([]); // List of products from the database
+    // const [toast, setToast] = useState({ message: "", type: "" });
 
     // Fetch all products from the backend when not in "add" mode
     useEffect(() => {
@@ -142,8 +145,17 @@ const ProductForm = () => {
                 body: JSON.stringify(formData),
             })
                 .then((response) => response.json())
-                .then((data) => console.log("Product added:", data))
-                .catch((error) => console.error("Error adding product:", error));
+                .then((data) =>
+                {
+                    console.log("Product added:", data);
+                    //setToast({ message: `Product ${mode}ed successfully!`, type: "success" });
+                    toast.success(`Product ${mode}ed successfully!`);
+                })
+                .catch((error) =>{
+                    // setToast({ message: `Error ${mode}ing product.`, type: "error" });
+                    toast.error(`Error ${mode}ing product.`);
+                    console.error(`Error ${mode}ing product:`, error);
+                } );
         } else if (mode === "update") {
             // Update product in the database
             fetch(`http://localhost:5000/updateProduct/${formData._id}`, {
@@ -152,22 +164,63 @@ const ProductForm = () => {
                 body: JSON.stringify(formData),
             })
                 .then((response) => response.json())
-                .then((data) => console.log("Product updated:", data))
-                .catch((error) => console.error("Error updating product:", error));
+                .then((data) =>
+                {
+                    console.log("Product updated:", data);
+                    //setToast({ message: `Product ${mode}ed successfully!`, type: "success" });
+                    toast.success(`Product ${mode}ed successfully!`);
+                })
+                .catch((error) =>
+                {
+                    console.error("Error updating product:", error);
+                    // setToast({ message: `Error ${mode}ing product.`, type: "error" });
+                    toast.error(`Error ${mode}ing product.`);
+                });
         } else if (mode === "delete") {
             // Delete product from the database
             fetch(`http://localhost:5000/deleteProduct/${formData._id}`, {
                 method: "DELETE",
             })
                 .then((response) => response.json())
-                .then((data) => console.log("Product deleted:", data))
-                .catch((error) => console.error("Error deleting product:", error));
+                .then((data) =>
+                {
+                    console.log("Product deleted:", data);
+                    // setToast({ message: `Product ${mode}ed successfully!`, type: "success" });
+                    toast.success(`Product ${mode}ed successfully!`);
+
+                })
+                .catch((error) =>
+                {
+                    console.error("Error deleting product:", error);
+                    // setToast({ message: `Error ${mode}ing product.`, type: "error" });
+                    toast.error(`Error ${mode}ing product.`);
+                });
         }
     };
 
     return (
         <div className="adminForm max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
             <h2 className="text-3xl font-bold text-center text-primary-bg mb-8">Product Management</h2>
+
+            {/*{toast.message && (*/}
+            {/*    <div*/}
+            {/*        className={`toast ${toast.type === "success" ? "toast-success" : "toast-error"}`}*/}
+            {/*        style={{ padding: "10px", marginBottom: "15px", borderRadius: "5px", background: toast.type === "success" ? "green" : "red", color: "white" }}*/}
+            {/*    >*/}
+            {/*        {toast.message}*/}
+            {/*    </div>*/}
+            {/*)}*/}
+            <ToastContainer
+                position="top-right" // Place the toast in the top-right corner
+                autoClose={3000} // Auto-dismiss after 3 seconds
+                hideProgressBar={false} // Show a progress bar
+                newestOnTop={true} // Display the newest toast on top
+                closeOnClick // Close the toast on click
+                pauseOnHover // Pause the toast timeout on hover
+                draggable // Allow drag to dismiss
+                theme="colored" // Apply a modern colored theme
+            />
+
 
             <div className="form-group mb-6">
                 <label htmlFor="mode" className="block font-medium mb-2">
@@ -402,7 +455,11 @@ const ProductForm = () => {
             </form>
         </div>
     );
+
+
 };
 
 export default ProductForm;
+
+
 
