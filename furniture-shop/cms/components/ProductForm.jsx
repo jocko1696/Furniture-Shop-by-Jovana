@@ -258,7 +258,7 @@ const ProductForm = () => {
                         onChange={handleChange}
                         // readOnly
                         placeholder="Sold (Default 0)"
-                        className="mt-2 p-3 w-full rounded-md border border-gray-300 focus:outline-none bg-gray-200"
+                        className="mt-2 p-3 w-full rounded-md border border-gray-300 focus:outline-none"
                     />
                 </div>
 
@@ -272,6 +272,7 @@ const ProductForm = () => {
                             { label: "Dressers & Armoires", value: "dressers-and-armoires" },
                             { label: "Sofas & Loveseats", value: "sofas-and-loveseats" },
                             { label: "Coffee Tables", value: "coffee-tables" },
+                            { label: "Modern chairs", value: "chair" },
                         ].map((category) => (
                             <div key={category.value}>
                                 <input
