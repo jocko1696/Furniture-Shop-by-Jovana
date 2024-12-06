@@ -35,14 +35,18 @@ const Login = () => {
             }).then(function (response) {
                 // localStorage.setItem('token', response.data.data.token);
                 login(response.data.data.token);
-                // Redirect to home page
-                navigate("/");
+                // Check if the user is an admin
+                if (response.data.data.isAdmin) {
+                    navigate("/administration"); // Redirect to admin page
+                } else {
+                    navigate("/"); // Redirect to user dashboard or other route
+                }
             })
                 .catch(function (error) {
                     console.log(error);
                 });
 
-            // console.log(token);
+
 
         } catch (error) {
             console.error(error);

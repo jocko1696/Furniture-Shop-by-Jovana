@@ -111,7 +111,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 //Method for login user
 const loginUser = asyncHandler(async (req, res) => {
-    console.log("U funkciji za login usera!");
+    // console.log("U funkciji za login usera!");
     const {email, password} = req.body;
 
     //Validate Request
@@ -155,6 +155,7 @@ const loginUser = asyncHandler(async (req, res) => {
                 email: newUser.email,
                 role: newUser.role,
                 token: token,
+                isAdmin: newUser.role === "admin", // Check if the user is an admin
             },
         });
 

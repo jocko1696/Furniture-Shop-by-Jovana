@@ -1,12 +1,43 @@
 // components/Sidebar.jsx
 import React from 'react';
 import { Box, Group, Text, UnstyledButton } from '@mantine/core';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = ({ onNavigate }) => {
     const navigationItems = [
         { label: 'Home', key: 'home' },
         { label: 'Products', key: 'products' },
+        { label: 'Logout', key: 'logout' },
     ];
+
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/logout', {
+                method: 'POST',
+                credentials: 'include', // Ensures cookies are sent with the request
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            if (response.ok) {
+                console.log('User successfully logged out');
+                navigate('/'); // Redirect to the home page
+            } else {
+                console.error('Logout failed');
+            }
+        } catch (error) {
+            console.error('Error during logout:', error);
+        }
+    };
+
+    const handleClick = (key) => {
+        if (key === 'logout') {
+            handleLogout();
+        } else {
+            onNavigate(key);
+        }
+    };
 
     return (
         <Box
@@ -33,7 +64,8 @@ const Sidebar = ({ onNavigate }) => {
                 {navigationItems.map((item) => (
                     <UnstyledButton
                         key={item.key}
-                        onClick={() => onNavigate(item.key)}
+                        // onClick={() => onNavigate(item.key)}
+                        onClick={() => handleClick(item.key)}
                         style={{
                             textAlign: 'left',
                             padding: '10px 15px',

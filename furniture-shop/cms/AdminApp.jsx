@@ -9,10 +9,9 @@ const AdminApp = () => {
     const renderPage = () => {
         switch (activePage) {
             case 'home':
-                return <Text size="lg" style={{ color: 'rgb(108, 43, 217)' }}>Welcome to the Home Tab!</Text>;
+                return <Text size="lg" style={{ color: 'rgb(108, 43, 217)' }}>Welcome Admin to administrator panel !</Text>;
             case 'products':
                 return <ProductForm />;
-                // return <Text size="lg" style={{ color: 'rgb(108, 43, 217)' }}>Manage your Products here!</Text>;
             default:
                 return <Text size="lg" style={{ color: 'rgb(108, 43, 217)' }}>Page not found</Text>;
         }
