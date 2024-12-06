@@ -3,11 +3,10 @@ import validate from "validate.js";
 
 const ProductForm = () => {
     const [formData, setFormData] = useState({
-        _id: "", // Added _id field for identifying products in updates
         name: "",
         price: "",
         sale: "",
-        categories: [],
+        category: [],
         quantity: "",
         sold: 0,
         description: "",
@@ -15,6 +14,7 @@ const ProductForm = () => {
         code: "",
         tags: [],
     });
+
     const [errors, setErrors] = useState({});
     const [mode, setMode] = useState("add"); // 'add', 'update', 'delete'
     const [products, setProducts] = useState([]); // List of products from the database
@@ -33,7 +33,7 @@ const ProductForm = () => {
         name: { presence: { allowEmpty: false } },
         price: { presence: { allowEmpty: false }, numericality: { greaterThan: 0 } },
         sale: { numericality: { greaterThanOrEqualTo: 0, allowBlank: true } },
-        categories: {
+        category: {
             presence: { allowEmpty: false, message: "must select at least one category." },
         },
         quantity: {
@@ -60,6 +60,7 @@ const ProductForm = () => {
         },
     };
 
+
     const handleModeChange = (e) => {
         const selectedMode = e.target.value;
         setMode(selectedMode);
@@ -70,7 +71,7 @@ const ProductForm = () => {
             name: "",
             price: "",
             sale: "",
-            categories: [],
+            category: [],
             quantity: "",
             sold: 0,
             description: "",
@@ -98,6 +99,7 @@ const ProductForm = () => {
         }
     };
 
+
     const handleProductSelect = (e) => {
         const selectedProduct = products.find((p) => p._id === e.target.value);
 
@@ -108,7 +110,7 @@ const ProductForm = () => {
                 name: selectedProduct.name,
                 price: selectedProduct.price,
                 sale: selectedProduct.sale || "",
-                categories: selectedProduct.categories || [],
+                category: selectedProduct.category || [],
                 quantity: selectedProduct.quantity,
                 sold: selectedProduct.sold || 0,
                 description: selectedProduct.description,
@@ -246,9 +248,23 @@ const ProductForm = () => {
                     {errors.sale && <span className="text-red-500">{errors.sale[0]}</span>}
                 </div>
 
-                {/* Categories Field */}
+                {/*Sold Field*/}
                 <div className="form-group mb-6">
-                    <label className="block font-medium mb-2">Categories</label>
+                    <input
+                        type="number"
+                        id="sold"
+                        name="sold"
+                        value={formData.sold}
+                        onChange={handleChange}
+                        // readOnly
+                        placeholder="Sold (Default 0)"
+                        className="mt-2 p-3 w-full rounded-md border border-gray-300 focus:outline-none bg-gray-200"
+                    />
+                </div>
+
+                {/* category Field */}
+                <div className="form-group mb-6">
+                    <label className="block font-medium mb-2">category</label>
                     <div className="flex items-center gap-4">
                         {[
                             { label: "Beds", value: "beds" },
@@ -261,9 +277,9 @@ const ProductForm = () => {
                                 <input
                                     type="checkbox"
                                     id={category.value}
-                                    name="categories"
+                                    name="category"
                                     value={category.value}
-                                    checked={formData.categories.includes(category.value)}
+                                    checked={formData.category.includes(category.value)}
                                     onChange={handleChange}
                                 />
                                 <label htmlFor={category.value} className="ml-2">
@@ -273,8 +289,8 @@ const ProductForm = () => {
                         ))}
                     </div>
 
-                    {errors.categories && (
-                        <span className="text-red-500">{errors.categories[0]}</span>
+                    {errors.category && (
+                        <span className="text-red-500">{errors.category[0]}</span>
                     )}
                 </div>
 

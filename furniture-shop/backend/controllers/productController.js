@@ -9,43 +9,47 @@ const Product = mongoose.model("Product");
 
 
 const createProduct = asyncHandler(async (req, res) => {
+    const { name, price, sale, category, quantity, sold, description, image, code, tags } = req.body;
+    console.log(req.body)
+
+    // Validate required fields
+    if (
+        !name ||
+        !price ||
+        !category ||
+        category?.[0] === undefined ||
+        !quantity ||
+        !description ||
+        !code ||
+        !tags ||
+        tags?.[0] === undefined
+    ) {
+        return res.status(400).json({
+            error: "Please fill in all required fields, including at least one category and tag.",
+        });
+    }
+
     try {
-        const {
+        const product = new Product({
             name,
             price,
             sale,
             category,
             quantity,
-            description,
-            image,
-            code,
-            tags,
-        } = req.body;
-
-        // Validation (optional if handled by the frontend already)
-        if (!name || !price || !category || !quantity || !description || !code || !tags) {
-            return res.status(400).json({ error: "Please fill in all required fields." });
-        }
-
-        // Create new product
-        const newProduct = new Product({
-            name,
-            price,
-            sale: sale || 0, // Default to 0 if not provided
-            category,
-            quantity,
+            sold,
             description,
             image,
             code,
             tags,
         });
 
-        const savedProduct = await newProduct.save();
-        res.status(201).json({ message: "Product created successfully", product: savedProduct });
-    } catch (error) {
-        res.status(500).json({ error: "Server error. Unable to create product." });
+        await product.save();
+        res.status(201).json(product);
+    } catch (err) {
+        res.status(500).json({ error: "Server error while creating product." });
     }
 });
+
 
 
 const getProducts = asyncHandler(async (req, res) => {
@@ -139,6 +143,8 @@ const deleteProduct = asyncHandler(async (req, res) => {
 });
 
 const updateProduct = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    console.log(req.params.id);
     try {
         // Find the product by ID and update it with the data from the request body
         const updatedProduct = await Product.findByIdAndUpdate(
