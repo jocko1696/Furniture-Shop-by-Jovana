@@ -5,6 +5,7 @@ import CardSection from "../components/CardSection.jsx";
 import FeaturedProduct from "../components/FeaturedProduct.jsx";
 import Reviews from "../components/Reviews.jsx";
 import ContactUs from "../components/ContactUs";
+import ContactComponent from "../components/ContactComponent.jsx";
 
 const Contact = () => {
 
@@ -21,16 +22,9 @@ const Contact = () => {
             </div>
             <Blog/>
             <CardSection/>
-            <div className="contact-section px-[70px] py-[20px]">
-                <div className="centerContainer ">
-                    <Reviews/>
-                </div>
-            </div>
-            <div className="contact-section px-[70px] py-[20px]">
-                <div className="centerContainer ">
-                    <ContactUs />
-                </div>
-            </div>
+           <div className="centerContainer">
+               <ContactComponent />
+           </div>
 
         </section>
     );
