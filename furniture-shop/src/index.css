@@ -1705,3 +1705,13 @@ nav a.active,
         left: 45px;
     }
 }
+
+@media only screen and (max-width: 1155px) {
+    .infoAboutUs{
+        flex-direction: column;
+    }
+
+    .infoAboutUs .half{
+      width:100%;
+    }
+}

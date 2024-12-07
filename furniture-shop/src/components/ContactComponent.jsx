@@ -13,8 +13,8 @@ const Contact = () => {
             exit={{ opacity: 0 }}
         >
             <div className="contact-container centerContainer">
-                <section className="contact-section flex">
-                    <div className="w-1/2">
+                <section className="contact-section flex gap-[30px] infoAboutUs">
+                    <div className="w-1/2 half">
                         <h2>Information About Us</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis neque
@@ -27,7 +27,7 @@ const Contact = () => {
                             <div className="icon pink"></div>
                             <div className="icon blue"></div>
                         </div></div>
-                    <div className="contact-section w-1/2">
+                    <div className="contact-section half w-1/2 gap-5">
                         <h2>Contact Way</h2>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
                             <div className="flex w-full justify-between">
