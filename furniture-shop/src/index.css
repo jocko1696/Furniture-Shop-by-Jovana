@@ -1442,6 +1442,10 @@ nav a.active,
     clip-path: unset !important;
 }
 
+
+.infoHeader, .infoDesc{
+    margin-bottom:30px!important;
+}
 /*******************MEDIA QUERY SECTION**********************/
 
 /* Mobile Responsiveness */
@@ -1711,7 +1715,27 @@ nav a.active,
         flex-direction: column;
     }
 
+    .gridContactWay{
+        gap:unset;
+    }
+
     .infoAboutUs .half{
       width:100%;
+    }
+}
+
+@media only screen and (max-width: 947px) {
+    .gridContactWay{
+        gap: 30px;
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .shape {
+        width: 349px;
+        height: 322px;
+        padding: unset;
     }
 }
