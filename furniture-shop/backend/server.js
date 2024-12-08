@@ -10,13 +10,32 @@ const userRoute = require("./routes/userRoute");
 const errorHandler = require("./middleware/errorMiddleware");
 const {protect} = require("./middleware/authMiddleware");
 const {registerUser, loginUser, getUser, logout} = require("./controllers/userController");
-const { createProduct, getProducts, getProductById,getProductsByParameters, deleteProduct, updateProduct } = require("./controllers/productController");
-const { getReviews } = require("./controllers/reviewController");
-const {getAllContacts,writeContact} = require("./controllers/contactController");
-const{  addProductToCart, getAllProductsFromCart, deleteCart, deleteProductFromCart,calculateTotalPrice,cartUpdated }=require("./controllers/cartController");
-const { stripeCheckout, createOrder, sendOrderEmails } = require ("./controllers/ordersController");
-
-
+const {
+    createProduct,
+    getProducts,
+    getProductById,
+    getProductsByParameters,
+    deleteProduct,
+    updateProduct
+} = require("./controllers/productController");
+const {getReviews} = require("./controllers/reviewController");
+const {getAllContacts, writeContact} = require("./controllers/contactController");
+const {
+    addProductToCart,
+    getAllProductsFromCart,
+    deleteCart,
+    deleteProductFromCart,
+    calculateTotalPrice,
+    cartUpdated
+} = require("./controllers/cartController");
+const {stripeCheckout, createOrder, sendOrderEmails} = require("./controllers/ordersController");
+const {
+    createBlog,
+    getBlogs,
+    getBlogById,
+    deleteBlog,
+    updateBlog,
+} = require ("./controllers/blogController");
 
 
 const app = express();
@@ -30,7 +49,7 @@ app.use(errorHandler);
 // .env file in the backend folder
 
 mongoose
-    .connect(process.env.MONGO_URL,{
+    .connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
 
@@ -50,9 +69,9 @@ app.use(express.json()); //adding express.json
 app.use(cookieParser()); //adding cookieParser which will help us to send and  receive the cookie from the backend
 app.use(express.urlencoded({extended: false}));
 
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({origin: true, credentials: true}));
 
-app.post("/create-checkout-session",stripeCheckout);
+app.post("/create-checkout-session", stripeCheckout);
 app.post("/create-order", createOrder);
 
 app.listen(4242, () => console.log("Server running on port 4242"));
@@ -70,18 +89,18 @@ app.post('/login', loginUser);
 app.post('/logout', logout);
 
 //create products in database
-app.post("/createProducts",createProduct);
+app.post("/createProducts", createProduct);
 
 //Get all the products from database
-app.get('/products',getProducts)
+app.get('/products', getProducts)
 
 //Get single product with id from url from database
-app.get('/products/:id',getProductById)
+app.get('/products/:id', getProductById)
 
 //Get products By parameters
-app.get('/productsByParams',getProductsByParameters)
+app.get('/productsByParams', getProductsByParameters)
 
-app.delete('/deleteProduct/:id',deleteProduct);
+app.delete('/deleteProduct/:id', deleteProduct);
 
 app.put("/updateProduct/:id", updateProduct);
 
@@ -89,7 +108,7 @@ app.put("/updateProduct/:id", updateProduct);
 /////REVIEWS//////////////
 
 //Get Google Reviews
-app.get('/getReviews',getReviews)
+app.get('/getReviews', getReviews)
 
 //Write contact in database
 app.post('/writeContact', writeContact);
@@ -100,9 +119,9 @@ app.post('/writeContact', writeContact);
 app.post('/addProductToCart', addProductToCart);
 
 //Get products from cart
-app.get('/getAllProductsFromCart',getAllProductsFromCart);
+app.get('/getAllProductsFromCart', getAllProductsFromCart);
 
-app.delete('/deleteProductFromCart/:id',deleteProductFromCart);
+app.delete('/deleteProductFromCart/:id', deleteProductFromCart);
 
 // Route for calculating total price of items in the cart
 app.get('/totalPrice', calculateTotalPrice);

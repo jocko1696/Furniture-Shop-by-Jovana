@@ -2,9 +2,6 @@ import React, {useEffect, useState} from 'react';
 import BreadCrumb from "../components/BreadCrumb.jsx";
 import Blog from "../components/Blog";
 import CardSection from "../components/CardSection.jsx";
-import FeaturedProduct from "../components/FeaturedProduct.jsx";
-import Reviews from "../components/Reviews.jsx";
-import ContactUs from "../components/ContactUs";
 import ContactComponent from "../components/ContactComponent.jsx";
 
 const Contact = () => {

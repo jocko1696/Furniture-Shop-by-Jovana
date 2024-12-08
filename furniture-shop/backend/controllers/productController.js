@@ -141,31 +141,6 @@ const deleteProduct = asyncHandler(async (req, res) => {
         res.status(500).json({ error: "Server error. Unable to delete product." });
     }
 });
-//
-// const updateProduct = asyncHandler(async (req, res) => {
-//     const { id } = req.params;
-//     console.log(req.params.id);
-//     try {
-//         // Find the product by ID and update it with the data from the request body
-//         const updatedProduct = await Product.findByIdAndUpdate(
-//             req.params.id,
-//             {
-//                 $set: req.body, // Update the product fields with the data from the request
-//             },
-//             { new: true } // Return the updated product
-//         );
-//
-//         if (!updatedProduct) {
-//             return res.status(404).json({ message: "Product not found" });
-//         }
-//
-//         // Send the updated product back in the response
-//         res.status(200).json(updatedProduct);
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: "Server error" });
-//     }
-// });
 
 // Update Product
 const updateProduct = asyncHandler(async (req, res) => {
