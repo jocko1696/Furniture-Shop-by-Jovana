@@ -17,14 +17,23 @@ const ReviewsPagination = () => {
         {
             name: "Sam Bankman-Fried",
             position: "Ceo At FTX",
+            description:`I absolutely love shopping at Furniture Shop Hekto! 
+            The quality of their products is outstanding, and every piece I’ve purchased has transformed my home into a cozy and stylish space. 
+            Their customer service is top-notch, always going the extra mile to ensure satisfaction. Highly recommended!`,
         },
         {
             name: "Selina Gomez",
             position: "Ceo At Webecy Digital",
+            description:`Furniture Shop Hekto is a gem! 
+            The variety of designs and the attention to detail in their furniture are impressive. The staff is incredibly helpful, and the delivery process was seamless. 
+            I couldn’t be happier with my new dining set—it’s both beautiful and functional!`,
         },
         {
             name: "Guy Gershon",
             position: "Senior Technical Product Manager",
+            description:`My experience with Furniture Shop Hekto has been nothing short of amazing. 
+            From the moment I stepped into their showroom, I was greeted with warmth and professionalism. 
+            The craftsmanship and durability of their furniture are unmatched. I’ll definitely be a returning customer!`,
         },
     ];
 
@@ -87,11 +96,8 @@ const ReviewsPagination = () => {
                                 <h5 className="text-[#8A8FB9] font-Lato text-[14px] mb-5">
                                     {client.position}
                                 </h5>
-                                <p className="text-[#8A8FB9] font-base font-bold text-base font-Lato leading-6 w-7/12">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non
-                                    duis ultrices quam vel dui sollicitudin aliquet id arcu. Nam
-                                    vitae a enim nunc, sed sapien egestas ac nam. Tristique
-                                    ultrices dolor aliquam lacus volutpat praesent.
+                                <p className="text-[#8A8FB9] font-base font-bold text-base font-Lato leading-6">
+                                    {client.description}
                                 </p>
                             </SwiperSlide>
                         ))}

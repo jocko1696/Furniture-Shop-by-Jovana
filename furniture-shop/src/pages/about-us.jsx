@@ -11,7 +11,7 @@ const AboutUs = () => {
             <div className="overlay-wrapper">
                 <div className="centerContainer">
                     <div className="flex flex-col relative z-20 breadcrumb-wrapper">
-                        <h1 className="pageHeaderTitle">Contact Us</h1>
+                        <h1 className="pageHeaderTitle">About Us</h1>
                         <BreadCrumb/>
                     </div>
                 </div>
