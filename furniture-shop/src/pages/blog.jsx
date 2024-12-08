@@ -1,5 +1,6 @@
 import React from 'react';
 import BreadCrumb from "../components/BreadCrumb.jsx";
+import BlogPage from "../components/BlogPage.jsx";
 
 const Blog = () => {
     return (
@@ -12,6 +13,9 @@ const Blog = () => {
                     </div>
                 </div>
                 <div className="overlay"></div>
+            </div>
+            <div className="centerContainer blogsContainer">
+                <BlogPage/>
             </div>
         </section>
     );

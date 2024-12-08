@@ -40,16 +40,26 @@ const createBlog = asyncHandler(async (req, res) => {
     }
 });
 
-const  getBlogs = asyncHandler(async (req, res) => {
+const getBlogs = asyncHandler(async (req, res) => {
+    const { page = 1, limit = 9, category } = req.query; // Default page and limit
+
+    const filter = category ? { category: { $in: [category] } } : {};
 
     try {
-        const blogs = await Blog.find({});
-        res.status(200).send(blogs);
-        // console.log(products);
+        const options = {
+            page: parseInt(page, 10),
+            limit: parseInt(limit, 10),
+            sort: { date: -1 }, // Sort by date descending
+        };
+
+        const blogs = await Blog.paginate(filter, options);
+        res.status(200).json(blogs);
     } catch (error) {
-        res.status(500).send();
+        console.error(error);
+        res.status(500).json({ message: "Server error while fetching blogs" });
     }
 });
+
 
 const getBlogById = asyncHandler(async (req, res) => {
 
@@ -120,10 +130,43 @@ const deleteBlog = asyncHandler(async (req, res) => {
 });
 
 
+const getBlogsByParameters = asyncHandler(async (req, res) => {
+
+    const { page = 1, category = "" } = req.query;  // Default category to an empty string
+    const limit = 10; // Number of blogs per page
+    const skip = (page - 1) * limit;
+
+    try {
+        let filter = {};
+
+        // Only add category filter if category is not empty
+        if (category) {
+            filter.category = category;
+        }
+
+        const blogs = await Blog.find(filter)
+            .skip(skip)
+            .limit(limit);
+        const totalBlogs = await Blog.countDocuments(filter);
+        const totalPages = Math.ceil(totalBlogs / limit);
+
+        res.json({
+            docs: blogs,
+            totalPages: totalPages,
+            page: parseInt(page),
+        });
+    } catch (error) {
+        console.error("Error fetching blogs:", error);
+        res.status(500).json({ message: "Error fetching blogs" });
+    }
+
+});
+
 module.exports = {
     createBlog,
     getBlogs,
     getBlogById,
     deleteBlog,
     updateBlog,
+    getBlogsByParameters,
 }

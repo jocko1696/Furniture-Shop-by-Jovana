@@ -35,6 +35,7 @@ const {
     getBlogById,
     deleteBlog,
     updateBlog,
+    getBlogsByParameters
 } = require ("./controllers/blogController");
 
 
@@ -128,6 +129,9 @@ app.get('/totalPrice', calculateTotalPrice);
 
 //Listen if there is a change happened on cart collection
 //  app.listen('/cartUpdated',cartUpdated);
+
+//Get all blogs
+app.get("/blogs", getBlogsByParameters);
 
 
 
