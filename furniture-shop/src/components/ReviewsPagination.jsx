@@ -46,7 +46,7 @@ const ReviewsPagination = () => {
             }}
             exit={{ opacity: 0, transition: { duration: 0.2 } }}
         >
-            <div className="container mx-auto mt-32 mb-36">
+            <div className="container mx-auto">
                 <div>
                     <h3 className="text-center font-bold font-JosefinSans text-[42px] mb-14">
                         Our Client Say!

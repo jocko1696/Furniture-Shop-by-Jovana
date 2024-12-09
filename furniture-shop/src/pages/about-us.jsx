@@ -8,7 +8,7 @@ import ReviewsPagination from "../components/ReviewsPagination.jsx";
 const AboutUs = () => {
     return (
         <section className="heroSectionContact pageSection about-us-page">
-            <div className="overlay-wrapper">
+            <div className="overlay-wrapper mb-[100px]">
                 <div className="centerContainer">
                     <div className="flex flex-col relative z-20 breadcrumb-wrapper">
                         <h1 className="pageHeaderTitle">About Us</h1>
@@ -24,7 +24,7 @@ const AboutUs = () => {
             {/*        <Reviews/>*/}
             {/*    </div>*/}
             {/*</div>*/}
-            <div className="contact-section px-[70px] py-[20px] ">
+            <div className="contact-section px-[70px] pt-[70px] pb-[80px] mb-[100px]">
                 <div className="centerContainer ">
                     <ReviewsPagination/>
                 </div>

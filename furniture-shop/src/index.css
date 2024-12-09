@@ -1446,6 +1446,17 @@ nav a.active,
 .infoHeader, .infoDesc{
     margin-bottom:30px!important;
 }
+
+.blogSingleContainer,
+.contactPageSection,
+.blogsContainer,
+.aboutUsPageSection{
+    margin:100px auto !important;
+}
+
+.about-us-page .sectionInfoCards{
+    padding-bottom: unset!important;
+}
 /*******************MEDIA QUERY SECTION**********************/
 
 /* Mobile Responsiveness */

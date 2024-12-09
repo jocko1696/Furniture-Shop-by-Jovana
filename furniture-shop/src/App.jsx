@@ -18,7 +18,8 @@ import AboutUs from "./pages/about-us"
 import OrderCompleted from "./pages/order-completed"
 import OrderCanceled from "./pages/order-canceled"
 import {AuthProvider} from "./context/useAuthContext";
-import Administration from '../cms/pages/Administration.jsx'; // Path to your Administration page
+import Administration from '../cms/pages/Administration.jsx';
+import SingleBlogPage from "./components/SingleBlog.jsx";
 
 
 const AppLayout = ({ children }) => {
@@ -50,10 +51,10 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Home/>}></Route>
                     <Route path='/products/' element={<Products/>}/>
-
                     <Route path='/products/:id' element={<ProductDetail/>}/>
                     <Route path='/contact-us' element={<Contact/>}/>
                     <Route path='/blog' element={<Blog/>}/>
+                    <Route path="/blog/:id" element={<SingleBlogPage />} /> {/* Dynamic route for single blog */}
                     <Route path='/login' element={<LoginHeader/>}/>
                     <Route path='/wishlist' element={<Wishlist/>}/>
                     <Route path='/cart' element={<Cart/>}/>

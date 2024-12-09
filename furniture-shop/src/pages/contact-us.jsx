@@ -17,9 +17,9 @@ const Contact = () => {
                 </div>
                 <div className="overlay"></div>
             </div>
-            <Blog/>
-            <CardSection/>
-           <div className="centerContainer">
+            {/*<Blog/>*/}
+            {/*<CardSection/>*/}
+           <div className="centerContainer contactPageSection">
                <ContactComponent />
            </div>
 

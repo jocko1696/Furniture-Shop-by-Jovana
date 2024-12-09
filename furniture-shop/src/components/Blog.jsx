@@ -13,7 +13,7 @@ const Blog = () => {
                     mattis aliquam,
                     malesuada diam est. Malesuada sem tristique amet erat vitae eget dolor lobortis. Accumsan faucibus
                     vitae lobortis quis bibendum quam.</p>
-                <div className="md:flex md:items-center md:justify-center"><a href="#footer" className="contactUs pl-[40px] pr-[40px] pt-[11px] pb-[11px] text-center">Contact us</a>
+                <div className="md:flex md:items-center md:justify-center"><a href="/contact-us" target="_self" className="contactUs pl-[40px] pr-[40px] pt-[11px] pb-[11px] text-center">Contact us</a>
                 </div>
 
             </div>

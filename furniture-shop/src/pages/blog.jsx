@@ -8,7 +8,7 @@ const Blog = () => {
             <div className="overlay-wrapper">
                 <div className="centerContainer">
                     <div className="flex flex-col relative z-20 breadcrumb-wrapper">
-                        <h1 className="pageHeaderTitle">Blog Page</h1>
+                        <h1 className="pageHeaderTitle">Blog</h1>
                         <BreadCrumb/>
                     </div>
                 </div>

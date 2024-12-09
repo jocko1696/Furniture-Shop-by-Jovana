@@ -132,6 +132,8 @@ app.get('/totalPrice', calculateTotalPrice);
 
 //Get all blogs
 app.get("/blogs", getBlogsByParameters);
+//Get blog by id
+app.get("/blogs/:id", getBlogById);
 
 
 

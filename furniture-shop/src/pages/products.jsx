@@ -70,15 +70,7 @@ const Products = () => {
             [index]: !prev[index]
         }));
     };
-    // const splitIndexSecond =
-    // const handleOnChange = (position) => {
-    //     const updatedCheckedState = checkedState.map((item, index) =>
-    //         index === position ? !item : item
-    //     );
-    //
-    //     setCheckedState(updatedCheckedState);
-    //     fetchProducts(updatedCheckedState, pagination.currentPage, searchTerm);
-    // };
+
 
     const handleOnChange = (position) => {
         const updatedCheckedState = checkedState.map((item, index) =>
