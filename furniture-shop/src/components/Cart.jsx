@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {useNavigate} from "react-router-dom"; // Assuming you use react-router
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom"; // Assuming you use react-router
 import axios from "axios";
-import {TiDelete} from "react-icons/ti";
+import { TiDelete } from "react-icons/ti";
 // import { io } from 'socket.io-client';
 // const socket = io('http://localhost:5000');  // Replace with your server URL
 import ShippingForm from "../components/ShippingForm";
-
+import { toast } from 'react-toastify'; // Importing toast for notifications
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -28,9 +28,7 @@ const Cart = () => {
     };
 
     useEffect(() => {
-
         fetchCartItems();
-
     }, []);
 
     // Function to calculate the total price of the entire cart
@@ -45,14 +43,23 @@ const Cart = () => {
     }, [cartItems]);
 
     const removeItem = async (id) => {
-        await axios.delete(`http://localhost:5000/deleteProductFromCart/${id}`);
-        setCartItems(cartItems.filter(item => item._id !== id));
+        try {
+            const response = await axios.delete(`http://localhost:5000/deleteProductFromCart/${id}`);
+            if (response.status === 200) {
+                setCartItems(cartItems.filter(item => item._id !== id));
+                toast.success('Product removed from the cart successfully!'); // Success toast
+            } else {
+                toast.error('Failed to remove the product. Please try again.'); // Error toast
+            }
+        } catch (error) {
+            console.error('Error removing item from cart:', error);
+            toast.error('Failed to remove the product. Please try again.'); // Error toast
+        }
     };
 
     const calculateTotal = (price, quantity) => {
         return price * quantity;
     };
-
 
     return (
         <div className="centerContainer">
@@ -72,9 +79,9 @@ const Cart = () => {
                         {cartItems.map((item, index) => (
                             <tr key={item._id} className={`row-${index + 1}`}>
                                 <td className="cart-image-row">
-                                    <img src={item.image} alt="Product Image" className="cart-product-image"/>
-                                    <button onClick={() => removeItem(item._id)}><TiDelete
-                                        className="delete-from-cart"/>
+                                    <img src={item.image} alt="Product Image" className="cart-product-image" />
+                                    <button onClick={() => removeItem(item._id)}>
+                                        <TiDelete className="delete-from-cart" />
                                     </button>
                                 </td>
                                 <td>{item.name}</td>
@@ -86,9 +93,8 @@ const Cart = () => {
                         </tbody>
                     </table>
                     <div className="flex justify-end">
-                        <button
-                            className=" clearCart flex items-center text-white text-xl  max-w-[163px] pl-[40px] pr-[40px] pt-[11px] pb-[11px] ">Clear
-                            Cart
+                        <button className="clearCart flex items-center text-white text-xl max-w-[163px] pl-[40px] pr-[40px] pt-[11px] pb-[11px]">
+                            Clear Cart
                         </button>
                     </div>
                 </div>
@@ -101,16 +107,12 @@ const Cart = () => {
                         </div>
                         <a href="#shoppingForm" className="proceed-button py-4">Proceed to Checkout</a>
                     </div>
-
-
                 </div>
             </div>
-            <div className=" shippingContainer flex justify-center">
-                <ShippingForm cartItems={cartItems}/>
+            <div className="shippingContainer flex justify-center">
+                <ShippingForm cartItems={cartItems} />
             </div>
         </div>
-
-
     );
 };
 
