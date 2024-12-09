@@ -852,6 +852,10 @@ nav a.active,
     color: #FF2AAA !important;
 }
 
+.product-details-wrapper .product-sale{
+    margin-top:unset!important;
+    margin-left:8px;
+}
 
 .submenu-products {
     /*background-color: #E5E0FC;*/

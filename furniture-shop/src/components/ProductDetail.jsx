@@ -3,6 +3,7 @@ import {NavLink, useParams} from 'react-router-dom';
 import ImageGallery from "./ImageGallery.jsx";
 import {AiOutlineHeart, AiOutlineShoppingCart} from "react-icons/ai";
 import {SlMagnifierAdd} from "react-icons/sl";
+import axios from "axios";
 
 const ProductDetail = () => {
     const {id} = useParams();
@@ -27,43 +28,82 @@ const ProductDetail = () => {
         return <div>Loading...</div>;
     }
 
+    const addToCart = async (product) => {
+        console.log(product);
+        try {
+            const response = await axios.post('http://localhost:5000/addProductToCart', {
+                productId: product._id,
+                name: product.name,
+                price: product.price,
+                image:product.image[0],
+            });
+
+            if (response.status === 201 || response.status === 200) {
+                console.log('Product added to cart successfully:', response.data);
+                // Optional: Update local cart state, show success message, etc.
+            }
+        } catch (error) {
+            console.error('Error adding product to cart:', error);
+        }
+    };
+
     return (
         <div className="centerContainer product-details-wrapper grid grid-cols-2 gap-[40px] md:flex md:flex-col">
             <div className="product-image-container "><ImageGallery images={product.image}/>
             </div>
-            <div className="product-info product">
-                <div className="flex flex-col justify-center max-w-[970px]">
-                    <div className="flex flex-row">
-                        <h1 className="product-name py-4">{product.name}</h1>
 
-                        <div className="fp-squares product-page-squares flex h-[2px] py-5 mx-[30px]">
-                        <span
-                            className="square blue-square px-[10px] py-[10px] bg-teal-300 mx-[4px] rounded-full"></span>
-                            <span
-                                className="square pink-square px-[10px] py-[10px] bg-pink-500  mx-[4px] rounded-full"></span>
-                            <span
-                                className="square yellow-square px-[10px] py-[10px] bg-yellow-100  mx-[4px] rounded-full"></span>
-                        </div>
-                    </div>
+            <div className="product-card bg-white shadow-lg rounded-lg overflow-hidden p-6 flex flex-col space-y-4 max-h-[600px]">
+                {/* Product Name */}
+                <h1 className="product-name text-2xl font-semibold text-gray-800 hover:text-teal-500 transition duration-300">
+                    {product.name}
+                </h1>
 
-                    <div className="flex flex-row py-1">
-                        <span className="product-price mr-4 ">${product.price}</span>
-                        <span className="product-sale">${product.sale}</span>
-                    </div>
-                    <div className="product-description-wrapper">
-                        <p className="product-description max-w-[700px]">{product.description}</p>
-                    </div>
-                </div>
-                <div className="flex svg-images-container">
-                    <NavLink to="/cart" className="flex justify-center items-center add-to-cart mr-[20px]">Add To Cart</NavLink>
-                    <div className="py-[15px]">
-                        <div className="flex flex-row py-2 svg-images">
-                           <NavLink to="/cart" className="flex justify-center items-center" ><AiOutlineShoppingCart className="svg-image"/></NavLink>
-                        </div>
-                    </div>
+                {/* Color Indicators (Squares) */}
+                <div className="fp-squares flex space-x-2">
+                    <span className="square bg-teal-300 w-6 h-6 rounded-full"></span>
+                    <span className="square bg-pink-500 w-6 h-6 rounded-full"></span>
+                    <span className="square bg-yellow-100 w-6 h-6 rounded-full"></span>
                 </div>
 
+                {/* Price */}
+                <div className="price-section flex md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
+                    <span className="product-price text-lg font-bold text-gray-800">${product.price}</span>
+                    {product.sale && (
+                        <span className="product-sale text-sm text-red-500 line-through mt-[0px]">${product.sale}</span>
+                    )}
+                </div>
+
+                {/* Product Description */}
+                <div className="product-description-wrapper">
+                    <p className="product-description text-gray-600 text-sm">{product.description}</p>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="action-buttons flex md:flex-row items-center md:space-y-0 md:space-x-6">
+                    <button
+                        className="p-2 bg-teal-500 text-white rounded-md shadow-md hover:bg-teal-600 flex items-center space-x-2 transition duration-300 ease-in-out transform hover:scale-105 mr-[10px]"
+                        onClick={() => addToCart(product)}
+                    >
+                        <AiOutlineShoppingCart className="w-5 h-5" />
+                        <span className="text-sm sm:text-base">Add to Cart</span>
+                    </button>
+                    <NavLink
+                        to="/wishlist"
+                        className="p-2 bg-gray-100 text-gray-600 rounded-md shadow-md hover:bg-gray-200 flex items-center transition duration-300 ease-in-out transform hover:scale-105"
+                    >
+                        <AiOutlineHeart className="w-5 h-5" />
+                        <span className="text-sm sm:text-base">Wishlist</span>
+                    </NavLink>
+                    {/*<NavLink*/}
+                    {/*    to={`/products/:${product.id}`}*/}
+                    {/*    className="p-2 bg-gray-100 text-gray-600 rounded-md shadow-md hover:bg-gray-200 flex items-center space-x-2 transition duration-300 ease-in-out transform hover:scale-105"*/}
+                    {/*>*/}
+                    {/*    <SlMagnifierAdd className="w-5 h-5" />*/}
+                    {/*    <span className="text-sm sm:text-base">View</span>*/}
+                    {/*</NavLink>*/}
+                </div>
             </div>
+
         </div>
     );
 }
