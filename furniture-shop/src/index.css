@@ -641,6 +641,11 @@ nav a.active,
     margin: 10px 0;
 }
 
+.registerUserForm input,
+.registerUserForm textarea{
+    margin-bottom:6px;
+}
+
 .loginUserFormInput > * {
     margin: 10px 0;
 }
@@ -753,8 +758,13 @@ nav a.active,
 /*}*/
 
 .error-red,
-.error-message {
-    color: red;
+.error-message,
+.error {
+    color: #CB1E1E !important;
+}
+
+.error svg{
+    margin-right:5px;
 }
 
 .success-message {
@@ -1460,6 +1470,10 @@ nav a.active,
 
 .about-us-page .sectionInfoCards{
     padding-bottom: unset!important;
+}
+
+.registerPageContainer{
+    margin:100px auto !important;
 }
 /*******************MEDIA QUERY SECTION**********************/
 
