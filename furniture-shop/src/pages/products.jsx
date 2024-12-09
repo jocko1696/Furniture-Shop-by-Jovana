@@ -4,6 +4,7 @@ import Product from "../components/Product"
 import axios from "axios";
 import ReactPaginate from 'react-paginate';
 
+
 const Products = () => {
 
     //Part for button filter activity

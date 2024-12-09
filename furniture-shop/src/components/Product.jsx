@@ -4,8 +4,9 @@ import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import { SlMagnifierAdd } from "react-icons/sl";
 import { NavLink } from 'react-router-dom';
 import axios from "axios";
-import {toast, ToastContainer} from 'react-toastify'; // Import toast
+import {toast} from 'react-toastify'; // Import toast
 import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
+
 
 const Product = (props) => {
 
@@ -35,17 +36,17 @@ const Product = (props) => {
 
     return (
         <>
-            {/* Toast container to display messages */}
-            <ToastContainer
-                position="top-right" // Place the toast in the top-right corner
-                autoClose={3000} // Auto-dismiss after 3 seconds
-                hideProgressBar={false} // Show a progress bar
-                newestOnTop={true} // Display the newest toast on top
-                closeOnClick // Close the toast on click
-                pauseOnHover // Pause the toast timeout on hover
-                draggable // Allow drag to dismiss
-                theme="colored" // Apply a modern colored theme
-            />
+            {/*/!* Toast container to display messages *!/*/}
+            {/*<ToastContainer*/}
+            {/*    position="top-right" // Place the toast in the top-right corner*/}
+            {/*    autoClose={3000} // Auto-dismiss after 3 seconds*/}
+            {/*    hideProgressBar={false} // Show a progress bar*/}
+            {/*    newestOnTop={true} // Display the newest toast on top*/}
+            {/*    closeOnClick // Close the toast on click*/}
+            {/*    pauseOnHover // Pause the toast timeout on hover*/}
+            {/*    draggable // Allow drag to dismiss*/}
+            {/*    theme="colored" // Apply a modern colored theme*/}
+            {/*/>*/}
 
             <div className={`product flex py-8 justify-center`}>
                 <div className={`product card-box flex flex-col lg:flex-row p-6 shadow-lg rounded-lg bg-white max-w-4xl`}>

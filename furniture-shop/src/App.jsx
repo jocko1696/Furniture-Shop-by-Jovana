@@ -3,7 +3,6 @@ import Header from "./components/Header.jsx";
 import Navbar from "./components/Navbar.jsx"
 import HeroFooter from "./components/HeroFooter.jsx";
 import FooterComponent from "./components/FooterComponent.jsx";
-// import {PageProvider} from "./components/PageContext.jsx";
 import {BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-dom';
 import Home from "./pages/index"
 import Blog from "./pages/blog"
@@ -20,6 +19,8 @@ import OrderCanceled from "./pages/order-canceled"
 import {AuthProvider} from "./context/useAuthContext";
 import Administration from '../cms/pages/Administration.jsx';
 import SingleBlogPage from "./components/SingleBlog.jsx";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';  // Import ToastContainer
 
 
 const AppLayout = ({ children }) => {
@@ -67,6 +68,19 @@ function App() {
                     <Route path="/administration/*" element={<Administration />} />
                 </Routes>
                 </AppLayout>
+
+
+                {/* Add ToastContainer here to show toast notifications */}
+                <ToastContainer
+                    position="top-right"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={true}
+                    closeOnClick
+                    pauseOnHover
+                    draggable
+                    theme="colored"
+                />
             </Router>
         </AuthProvider>
 
