@@ -75,9 +75,12 @@ const Login = () => {
                 }
             } else {
                 console.log("Login failed: ", response.data.message);
+                toast.error(response.data.message || "Login failed. Please try again.");
+
             }
         } catch (error) {
             console.error("Error during login: ", error);
+            toast.error("An error occurred during login. Please try again.");
         }
     };
 
