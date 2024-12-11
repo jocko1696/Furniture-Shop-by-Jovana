@@ -1,9 +1,11 @@
 const asyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs"); // this library will help us to secure password
+const bcrypt = require('bcryptjs') // this library will help us to secure password
 require("../models/userModel");
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
+const rsa = require("../utilis/rsa");
+// const JSEncrypt = require("jsencrypt"); // Ensure you have the package for decryption
 
 
 //Generating the JSON Webtoken.
@@ -15,158 +17,154 @@ const generateToken = (id) => {
     )
 }
 
-//Register User
+
+// Decrypt Data
+const decryptData = (encryptedData) => {
+    try {
+        // Ensure the encrypted data is in the correct format (base64 encoded)
+        if (!encryptedData) throw new Error("Encrypted data is required");
+
+        // Decrypt using the private key (this will decrypt to a UTF-8 string)
+        const decrypted = rsa.private.decrypt(encryptedData, 'utf8');
+        return decrypted;
+    } catch (error) {
+        throw new Error("Invalid encrypted data: " + error.message);
+    }
+};
+
+
 const registerUser = asyncHandler(async (req, res) => {
+    const { encryptedPassword, ...userData } = req.body;
 
+    if (!encryptedPassword) {
+        res.status(400).json({ message: "Encrypted password is required!" });
+        return;
+    }
 
-    console.log("U funkciji za registraciju!")
-    const {
-        email,
-        password,
-        role,
-        photo,
-        firstName,
-        lastName,
-        street,
-        streetNumber,
-        postalCode,
-        city,
-        phone
-    } = req.body;
+    try {
+        // Decrypt the password
+        const decryptedPassword = decryptData(encryptedPassword);
+        console.log("Decrypted password during registration:", decryptedPassword);
+        /*******************************************************************************************/
+        /*Please keep on mind that userModel considers hashing, so when you save your password decrypted it will be hashed as the part of
+        the model. Code above will done hashing two times, and then bycript.compare() would always return false*/
 
-    // //Validation of the information that we'we got from request body
-    // if (!email || !password || !role || !photo || !firstName || !lastName || !street || !address || !streetNumber || !postalCode || !city || !phone) {
-    //     res.status(400); //Bad request if any of the parametars is missing in the response
-    //     throw newError("Please fill in all required fields");
-    // }
-    //
-    // //Also need the check the length of the password
-    // if (password.length < 6) {
-    //     res.status(400);
-    //     throw newError("Password must be up to 6 characters");
-    // }
+        // // Hash the decrypted password
+        // const hashedPassword = await bcrypt.hash(decryptedPassword, 10);
+        // console.log("Hashed password during registration:", hashedPassword);
 
+        /*******************************************************************************************/
 
-    //Validation if the email of the registered user is unique and we don't already have it in the databse
-    // const userExists = await User.findOne({email: email});
-    // if (userExists) {
-    //     res.status(400);
-    //     throw newError("User has already been registered! ");
-    // }
+        // Check if user already exists
+        const userExists = await User.findOne({ email: userData.email });
+        if (userExists) {
+            res.status(409).json({ message: "User already exists!" });
+            return;
+        }
 
-    const userExists = await User.findOne({email: email});
-    if (userExists) {
-        res.status(409).json({message: "User already exists!"});
-    } else {
-        // Register the user in the database
-        const user = await User.create({
-            email: req.body.email,
-            password: req.body.password,
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            street: req.body.street,
-            streetNumber: req.body.streetNumber,
-            postalCode: req.body.postalCode,
-            city: req.body.city,
-            photo: req.body.photo,
-            phone: req.body.phone,
-            role: req.body.role,
-        })
+        // Create the user with the hashed password
+        const user = await User.create({ ...userData, password: decryptedPassword });
 
+        if (user) {
+            // Generate JWT token
+            const token = generateToken(user._id);
 
-        //Generate token
-        //We are generating token with the id of the current user.Doing this in registration,when user is registered he will automatically be signed in
-        const token = generateToken(user._id); //reference token for user on cookie
-        console.log(token);
-        if (user) { //if user is created send token to frontend
-            const {_id, email, role} = user;
-            // Assign JWT to cookie
             res.cookie("token", token, {
                 path: "/",
                 httpOnly: true,
-                expires: new Date(Date.now() + 1000 * 86400),
-                secure:true,
-                sameSite:'none',
+                secure: true,
+                sameSite: "none",
+                expires: new Date(Date.now() + 1000 * 86400), // 1 day
             });
 
             res.status(201).json({
                 success: true,
-                message: 'User registered successfully!',
+                message: "User registered successfully!",
                 data: {
-                    id: _id,
-                    email: email,
-                    role: role,
-                    token: token,
+                    token,
+                    id: user._id,
+                    email: user.email,
+                    role: user.role,
                 },
             });
-
         } else {
-            res.status(400);
-            throw new Error("Invalid user data");
+            res.status(400).json({ message: "Invalid user data!" });
         }
+    } catch (error) {
+        console.error("Error during registration:", error.message);
+        res.status(500).json({ message: "Internal Server Error!" });
     }
-
-
 });
 
-//Method for login user
+
+
+// Login User
+
+// Login User
 const loginUser = asyncHandler(async (req, res) => {
-    // console.log("U funkciji za login usera!");
-    const {email, password} = req.body;
+    const { email, encryptedPassword } = req.body;
+    console.log("Enkriptovani pass: " + encryptedPassword);
 
-    //Validate Request
-    if (!email || !password) {
-        res.status(400);
-        throw  new Error("Please add email and password.");
-    }
+    try {
+        console.log("Login attempt:", { email });
 
-    //Check if user exists, and if user exists check if password is correct
-    const user = await User.findOne({email: email});
-    if (!user) {
-        res.status(400);
-        throw new Error("User not exist.");
+        // Decrypt the password from the client
+        const decryptedPassword = decryptData(encryptedPassword);
+        console.log("Decrypted password:", decryptedPassword.trim());
 
-    }
-    const passwordIsCorrect = await bcrypt.compare(password, user.password);
+        // Find the user in the database
+        const user = await User.findOne({ email });
+        if (!user) {
+            throw new Error("User not found.");
+        }
 
-    //Generate token
-    const token = generateToken(user._id);
-    console.log(token);
-    if (user && passwordIsCorrect) {
+        console.log("Korisnički password:"+ user.password.trim());
+        // Compare the decrypted password with the stored hashed password
 
-        //Delete the password so the password is not visible
-        const newUser = await User.findOne({email: email}).select("-password");
+        try {
+            var isPasswordCorrect = await bcrypt.compare(decryptedPassword.trim(), user.password.trim());
 
-        // Assign JWT to cookie
+            if (isPasswordCorrect) {
+                console.log("Password match");
+            } else {
+                console.log("Password does not match");
+            }
+        } catch (err) {
+            console.error("Error comparing passwords", err);
+        }
+        console.log("Direct bcrypt comparison result:", isPasswordCorrect);
+
+        if (!isPasswordCorrect) {
+            throw new Error("Invalid email or password.");
+        }
+
+        // Generate token
+        const token = generateToken(user._id);
+
         res.cookie("token", token, {
             path: "/",
             httpOnly: true,
-            expires: new Date(Date.now() + 1000 * 86400),
-            secure:true,
-            sameSite:'none',
+            secure: true,
+            sameSite: "none",
+            expires: new Date(Date.now() + 1000 * 86400), // 1 day
         });
 
-
-        res.status(201).json({
+        res.status(200).json({
             success: true,
-            message: 'User successfully logged in!',
+            message: "Login successful!",
             data: {
-                id: newUser._id,
-                email: newUser.email,
-                role: newUser.role,
-                token: token,
-                isAdmin: newUser.role === "admin", // Check if the user is an admin
+                id: user._id,
+                email: user.email,
+                role: user.role,
+                token,
             },
         });
-
-        console.log("User logged in");
-    } else {
-        res.status(400);
-        throw new Error("Invalid email or password.");
+    } catch (error) {
+        console.error(error.message);
+        res.status(401).json({ message: error.message });
     }
+});
 
-
-})
 
 //Logout
 const logout = asyncHandler(async (req, res) => {

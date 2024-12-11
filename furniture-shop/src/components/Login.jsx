@@ -2,6 +2,11 @@ import React, {useContext, useState} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
 import axios from 'axios';
 import { AuthContext } from "../context/useAuthContext";
+import {toast} from 'react-toastify'; // Importing toast
+import 'react-toastify/dist/ReactToastify.css';
+import JSEncrypt from "jsencrypt";
+import { publicKey } from "../../backend/keys/publicKey";
+
 
 const Login = () => {
 
@@ -25,31 +30,54 @@ const Login = () => {
 
     };
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:5000/login', formData, {
-                withCredentials: true,
-                credentials: 'include'
-            }).then(function (response) {
-                // localStorage.setItem('token', response.data.data.token);
+
+            // Encrypt the password using the public key
+            const encryptor = new JSEncrypt();
+            encryptor.setPublicKey(publicKey);
+            const encryptedPassword = encryptor.encrypt(formData.password);
+
+            // Check if the encryption was successful
+            if (!encryptedPassword) {
+                console.error("Password encryption failed!");
+                toast.error("Password encryption failed!");
+                return;
+            }
+
+            // Prepare the data to send to the server
+            const data = {
+                email: formData.email,
+                encryptedPassword, // Send the encrypted password
+            };
+
+            // Send POST request to backend
+            const response = await axios.post('http://localhost:5000/login', data, {
+                withCredentials: true, // Ensures cookies are sent with the request
+                credentials: 'include', // Allow credentials
+            });
+
+            // Handle response
+            if (response.data.success) {
+                // Store token in localStorage or manage it according to your needs
+                localStorage.setItem('token', response.data.data.token);
                 login(response.data.data.token);
-                // Check if the user is an admin
-                if (response.data.data.isAdmin) {
-                    navigate("/administration"); // Redirect to admin page
+                toast.success("Login successful!");
+
+                // Redirect based on user role
+                if (response.data.data.role==='admin') {
+                    navigate("/administration");
                 } else {
-                    navigate("/"); // Redirect to user dashboard or other route
+                    navigate("/");
                 }
-            })
-                .catch(function (error) {
-                    console.log(error);
-                });
-
-
-
+            } else {
+                console.log("Login failed: ", response.data.message);
+            }
         } catch (error) {
-            console.error(error);
+            console.error("Error during login: ", error);
         }
     };
 

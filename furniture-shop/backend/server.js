@@ -75,7 +75,7 @@ app.use(cors({origin: true, credentials: true}));
 app.post("/create-checkout-session", stripeCheckout);
 app.post("/create-order", createOrder);
 
-app.listen(4242, () => console.log("Server running on port 4242"));
+// app.listen(4242, () => console.log("Server running on port 4242"));
 app.get("/register", (req, res) => {
     res.send("This is register page!!!");
 })
