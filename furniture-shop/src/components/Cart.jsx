@@ -5,7 +5,7 @@ import { TiDelete } from "react-icons/ti";
 // import { io } from 'socket.io-client';
 // const socket = io('http://localhost:5000');  // Replace with your server URL
 import ShippingForm from "../components/ShippingForm";
-import { toast } from 'react-toastify'; // Importing toast for notifications
+import {toast, ToastContainer} from 'react-toastify'; // Importing toast for notifications
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -112,6 +112,18 @@ const Cart = () => {
             <div className="shippingContainer flex justify-center">
                 <ShippingForm cartItems={cartItems} />
             </div>
+
+            {/* Add ToastContainer here to show toast notifications */}
+            {/*<ToastContainer*/}
+            {/*    position="top-right"*/}
+            {/*    autoClose={3000}*/}
+            {/*    hideProgressBar={false}*/}
+            {/*    newestOnTop={true}*/}
+            {/*    closeOnClick*/}
+            {/*    pauseOnHover*/}
+            {/*    draggable*/}
+            {/*    theme="colored"*/}
+            {/*/>*/}
         </div>
     );
 };

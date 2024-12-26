@@ -1,8 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
 const mongoosePaginate = require("mongoose-paginate-v2");
-
-
 
 const productSchema = new mongoose.Schema(
     {
@@ -25,11 +22,6 @@ const productSchema = new mongoose.Schema(
 
         },
 
-        // category: {
-        //     type: [String],
-        //     required: [true, "Please add a category"],
-        //     trim: true,
-        // },
 
         category: [{
             type: [String],
@@ -60,11 +52,6 @@ const productSchema = new mongoose.Schema(
             type: [String],
 
         },
-
-        // ratings: {
-        //     type: [Object],
-        //
-        // },
 
         code: {
             type: String,

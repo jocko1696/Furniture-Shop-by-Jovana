@@ -26,6 +26,7 @@ const decryptData = (encryptedData) => {
 
         // Decrypt using the private key (this will decrypt to a UTF-8 string)
         const decrypted = rsa.private.decrypt(encryptedData, 'utf8');
+        console.log("Dekriptovano: " + decrypted);
         return decrypted;
     } catch (error) {
         throw new Error("Invalid encrypted data: " + error.message);

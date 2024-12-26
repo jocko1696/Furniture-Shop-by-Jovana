@@ -152,7 +152,7 @@ const Register = () => {
                     credentials: 'include',
                 });
 
-                console.log(response.data.data.token);
+
                 // If registration is successful
                 localStorage.setItem('token', response.data.data.token);
                 login(response.data.data.token);

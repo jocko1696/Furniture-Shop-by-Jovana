@@ -5,7 +5,7 @@ require('../models/productModel');
 const mongoose = require("mongoose");
 //const {ObjectId} = require("mongoose");
 const Product = mongoose.model("Product");
-// const mongoosePaginate = require('mongoose-paginate');
+
 
 
 const createProduct = asyncHandler(async (req, res) => {

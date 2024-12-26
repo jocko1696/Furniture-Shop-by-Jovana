@@ -1,12 +1,8 @@
 const express = require("express");
-// const http = require('http');
-// const socketIo = require('socket.io');
 const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 require('dotenv').config();
-const userRoute = require("./routes/userRoute");
 const errorHandler = require("./middleware/errorMiddleware");
 const {protect} = require("./middleware/authMiddleware");
 const {registerUser, loginUser, getUser, logout} = require("./controllers/userController");
