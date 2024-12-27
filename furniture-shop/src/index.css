@@ -779,10 +779,7 @@ nav a.active,
 .menuButton:hover svg{
     color:#FB2E86!important;
 }
-/*.nav-item-2 a:hover + div{*/
-/*    display:block;*/
-/*    background:white;*/
-/*}*/
+
 
 .error-red,
 .error-message,

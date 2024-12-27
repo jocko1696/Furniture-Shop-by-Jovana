@@ -14,7 +14,7 @@ const FeaturedProduct = (props) => {
                 productId: product.id,
                 name: product.name,
                 price: product.price,
-                image: product.image[0],
+                image: product.image,
             });
 
             if (response.status === 201 || response.status === 200) {
