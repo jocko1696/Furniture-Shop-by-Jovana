@@ -769,7 +769,7 @@ nav a.active,
 }
 
 .nav-item a:hover{
-    color:#4F46E5!important;
+    color: #FB2E86!important;
     font-weight: 700 !important;
 }
 
@@ -940,6 +940,11 @@ nav a.active,
     font-family: Poppins, sans-serif;
     color: #9ca3af !important;
     font-size: 15px !important;
+}
+#footer-elements li a:hover {
+
+    color: #FB2E86 !important;
+
 }
 
 #footer-elements li a.active {
