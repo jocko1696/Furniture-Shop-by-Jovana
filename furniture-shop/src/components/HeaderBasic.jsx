@@ -21,7 +21,7 @@ const HeaderBasic = (props) => {
             break;
         case "user-logged-in":
             link = <div className="flex ">
-                <NavLink className="flex" to="/login">Login <UserIcon className="heroIcon  ml-[10px]"/></NavLink>
+                <NavLink className="flex purpleHeader" to="/login">Login <UserIcon className="heroIcon  ml-[10px]"/></NavLink>
 
             </div>
             break;
@@ -38,7 +38,7 @@ const HeaderBasic = (props) => {
             </div>
             break;
         case "cart":
-            link = <div>
+            link = <div className="purpleHeader">
                 <NavLink to="/cart"><ShoppingBagIcon className="heroIcon"/></NavLink>
 
             </div>

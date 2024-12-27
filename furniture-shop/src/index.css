@@ -753,9 +753,31 @@ nav a.active,
 
 }
 
+.headerEmail a:hover{
+    color:#FB2E86!important;
+}
+
+.hektoPhone a:hover{
+    color:#FB2E86!important;
+}
+
+.purpleHeader a:hover{
+    color:#FB2E86!important;
+}
+.purpleHeader a:hover svg{
+    color:#FB2E86!important;
+}
+
 .nav-item a:hover{
     color:#4F46E5!important;
     font-weight: 700 !important;
+}
+
+.menuButton:hover{
+    color:#FB2E86!important;
+}
+.menuButton:hover svg{
+    color:#FB2E86!important;
 }
 /*.nav-item-2 a:hover + div{*/
 /*    display:block;*/

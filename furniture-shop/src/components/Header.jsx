@@ -58,7 +58,7 @@ const Header = () => {
                         <EnvelopeIcon className="heroIcon"/>
                         <a className=" ml-[10px]" href="mailto:hekto@gmail.com">hekto@gmail.com</a>
                     </div>
-                    <div className="flex">
+                    <div className="flex hektoPhone">
                         <PhoneIcon className="heroIcon"/>
                         <a className=" ml-[10px]" href="tel:+38765750008">+38765750008</a>
                     </div>
@@ -74,14 +74,14 @@ const Header = () => {
                         {...links2}
 
                     />
-                    <div className="flex ">
+                    <div className="flex purpleHeader ">
                        <Auth/>
                     </div>
-                    <div className="flex">
+                    <div className="flex purpleHeader">
                         <NavLink className="flex" to="/wishlist">Wishlist<HeartIcon
                             className="heroIcon ml-[10px]"/></NavLink>
                     </div>
-                    <div className="flex">
+                    <div className="flex purpleHeader">
                         <NavLink to="/cart"><ShoppingBagIcon className="heroIcon"/></NavLink>
                     </div>
                 </div>

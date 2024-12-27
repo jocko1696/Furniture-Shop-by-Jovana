@@ -1,25 +1,47 @@
 import React from 'react';
 import {AiOutlineShoppingCart, AiOutlineHeart} from "react-icons/ai";
 import {SlMagnifierAdd} from "react-icons/sl";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
+import {toast} from "react-toastify";
+import axios from "axios";
 
 const FeaturedProduct = (props) => {
+    /************** ADD PRODUCTS TO CART ****************************/
 
+    const addToCart = async (product) => {
+        try {
+            const response = await axios.post('http://localhost:5000/addProductToCart', {
+                productId: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image[0],
+            });
+
+            if (response.status === 201 || response.status === 200) {
+                console.log('Product added to cart successfully:', response.data);
+                toast.success("Product added to cart!", ); // Success toast
+            }
+        } catch (error) {
+            console.error('Error adding product to cart:', error);
+            toast.error("Error adding product to cart. Please try again.", ); // Error toast
+        }
+    };
 
     if (props.featured === true) {
+
         return (
             <div className="fp flex flex-col ">
                 <div className="card-top max-h-[350px] relative">
                     <img className="w-[325px] h-[325px] object-cover rounded-t-[15px]" alt="Error while loading image"
                          src={props.image}/>
                     <div className="fb-buttons hidden" id="fp-buttons">
-                        <a className="flex justify-center items-center"><AiOutlineShoppingCart
+                        <a className="flex justify-center items-center"  onClick={() => addToCart(props)} ><AiOutlineShoppingCart
                             className="svg-image"/></a>
                         <a className="flex justify-center items-center"><AiOutlineHeart className="svg-image"/></a>
-                        <a className="flex justify-center items-center"><SlMagnifierAdd className="svg-image"/></a>
+                        <NavLink className="flex justify-center items-center" to={`/products/:${props.id}`}><SlMagnifierAdd className="svg-image"/></NavLink>
                     </div>
                     <div className="fp-view-details hidden" id="fp-view-details">
-                        <Link className="bg-green-500 px-[30px] py-[20px] text-white family-['Popins']" to={`/products/${props.id}`}>View
+                        <Link className="bg-green-500 px-[30px] py-[20px] text-white family-['Popins']" to={`/products/:${props.id}`}>View
                             details</Link>
                     </div>
                 </div>

@@ -36,18 +36,6 @@ const Product = (props) => {
 
     return (
         <>
-            {/*/!* Toast container to display messages *!/*/}
-            {/*<ToastContainer*/}
-            {/*    position="top-right" // Place the toast in the top-right corner*/}
-            {/*    autoClose={3000} // Auto-dismiss after 3 seconds*/}
-            {/*    hideProgressBar={false} // Show a progress bar*/}
-            {/*    newestOnTop={true} // Display the newest toast on top*/}
-            {/*    closeOnClick // Close the toast on click*/}
-            {/*    pauseOnHover // Pause the toast timeout on hover*/}
-            {/*    draggable // Allow drag to dismiss*/}
-            {/*    theme="colored" // Apply a modern colored theme*/}
-            {/*/>*/}
-
             <div className={`product flex py-8 justify-center`}>
                 <div className={`product card-box flex flex-col lg:flex-row p-6 shadow-lg rounded-lg bg-white max-w-4xl`}>
                     {/* Image Section */}
