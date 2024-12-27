@@ -37,7 +37,7 @@ const FeaturedProduct = (props) => {
                     <div className="fb-buttons hidden" id="fp-buttons">
                         <a className="flex justify-center items-center"  onClick={() => addToCart(props)} ><AiOutlineShoppingCart
                             className="svg-image"/></a>
-                        <a className="flex justify-center items-center"><AiOutlineHeart className="svg-image"/></a>
+                        <NavLink className="flex justify-center items-center" to="/wishlist"><AiOutlineHeart className="svg-image"/></NavLink>
                         <NavLink className="flex justify-center items-center" to={`/products/:${props.id}`}><SlMagnifierAdd className="svg-image"/></NavLink>
                     </div>
                     <div className="fp-view-details hidden" id="fp-view-details">
