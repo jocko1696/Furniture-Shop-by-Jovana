@@ -57,6 +57,21 @@ const Cart = () => {
         }
     };
 
+    const clearCart = async (id) => {
+        try {
+            const response = await axios.delete(`http://localhost:5000/clearCart`);
+            if (response.status === 200) {
+                setCartItems([]); // Clear the cart items visually
+                toast.success('Products removed from the cart successfully!'); // Success toast
+            } else {
+                toast.error('Failed to remove products. Please try again.'); // Error toast
+            }
+        } catch (error) {
+            console.error('Error removing items from cart:', error);
+            toast.error('Failed to remove  products. Please try again.'); // Error toast
+        }
+    };
+
     const calculateTotal = (price, quantity) => {
         return price * quantity;
     };
@@ -93,7 +108,9 @@ const Cart = () => {
                         </tbody>
                     </table>
                     <div className="flex justify-end">
-                        <button className="clearCart flex items-center text-white text-xl max-w-[163px] pl-[40px] pr-[40px] pt-[11px] pb-[11px]">
+                        <button className="clearCart flex items-center text-white text-xl max-w-[163px] pl-[40px] pr-[40px] pt-[11px] pb-[11px]"
+                                onClick={() => clearCart()}
+                        >
                             Clear Cart
                         </button>
                     </div>

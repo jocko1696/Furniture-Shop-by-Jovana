@@ -54,19 +54,6 @@ const deleteCart = asyncHandler(async (req, res) => {
     }
 });
 
-// const deleteProductFromCart = asyncHandler(async (req, res) => {
-//     const { id } = req.params;
-//     try {
-//         await CartItem.findByIdAndDelete(id);
-//         // Emit event to notify clients about the cart update
-//         io.emit('cartUpdated'); // Notify all connected clients about cart change
-//         res.json({ message: 'Item removed from cart' });
-//
-//     } catch (error) {
-//         res.status(500).json({ message: 'Failed to remove item' });
-//     }
-//
-// });
 const deleteProductFromCart = asyncHandler(async (req, res) => {
     const { id } = req.params;
 

@@ -120,6 +120,9 @@ app.get('/getAllProductsFromCart', getAllProductsFromCart);
 
 app.delete('/deleteProductFromCart/:id', deleteProductFromCart);
 
+//Delete all products from cart
+app.delete('/clearCart', deleteCart);
+
 // Route for calculating total price of items in the cart
 app.get('/totalPrice', calculateTotalPrice);
 
