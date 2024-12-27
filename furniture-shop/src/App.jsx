@@ -19,6 +19,7 @@ import OrderCanceled from "./pages/order-canceled"
 import {AuthProvider} from "./context/useAuthContext";
 import Administration from '../cms/pages/Administration.jsx';
 import SingleBlogPage from "./components/SingleBlog.jsx";
+import FAQ from  "./pages/faq.jsx"
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';  // Import ToastContainer
 
@@ -63,6 +64,7 @@ function App() {
                     <Route path='/register' element={<RegisterPage/>}/>
                     <Route path='/order-completed' element={<OrderCompleted/>}/>
                     <Route path='/order-canceled' element={<OrderCanceled/>}/>
+                    <Route path="/faq" element={<FAQ/>} />
 
                     {/* Load the admin panel */}
                     <Route path="/administration/*" element={<Administration />} />

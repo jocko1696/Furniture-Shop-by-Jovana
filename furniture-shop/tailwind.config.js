@@ -9,6 +9,8 @@ export default {
     extend: {
       colors: {
         'custom-gray': '#9295AA',
+        primary: '#4F46E5', // Add a custom primary color
+        secondary: '#D1D5DB',
       },
     },
     screens: {

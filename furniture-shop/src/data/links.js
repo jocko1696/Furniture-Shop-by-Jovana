@@ -41,6 +41,13 @@ export default [
 
     },
     {
+        name: "FAQ",
+        link: "/faq",
+        classes: "nav-item nav-item-3",
+        submenu: "false",
+
+    },
+    {
         name: "About",
         link: "/about-us",
         classes: "nav-item nav-item-4",
